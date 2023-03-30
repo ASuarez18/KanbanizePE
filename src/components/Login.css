@@ -1,0 +1,43 @@
+.login-container,
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+@media screen and (min-width: 700px) {
+    .login-container {
+        padding: 5rem;
+        border: 5px solid black;
+        border-radius: 10px;
+        margin: 0.5rem;
+        background-color: white;
+    }
+}
+
+label {
+    text-align: left;
+    padding: 0.25rem 0;
+}
+
+input {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+button {
+    border: none;
+    background-color: #47525E;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.link-btn {
+    background: none;
+    color: white;
+    text-decoration: underline;
+}
