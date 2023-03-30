@@ -19,7 +19,7 @@ export const Login = (props) => {
         };
         console.log(values);
 
-        const response = await fetch(`http://localhost:3001/login`,
+        const response = await fetch(`http://localhost:3013/login`,
             {
                 method: 'POST',
                 headers: {
@@ -52,7 +52,7 @@ export const Login = (props) => {
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Contraseña" id="pass" name="pass" />
                 <button type="submit">INICIAR SESIÓN</button>
             </form>
-            <ErrorModal show={modalShow} title='Error inicio de sesión' message='Usuario o contraseña incorrectos' onHide={() => setModalShow(false)} />
+            <ErrorModal show={modalShow} message='Usuario o contraseña incorrectos' onHide={() => setModalShow(false)} />
         </div>
     )
 }
