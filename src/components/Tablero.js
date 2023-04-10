@@ -1,9 +1,12 @@
 import React from 'react'
 import "./Tablero.css"
+import imagenes from "./assets/imagenes";
 
-export const Tablero = () => {
+export const Tablero = (props) => {
   return (
-    <div>PAGINA DE TABLEROS</div>
+    <div >
+      <img src={imagenes.img3}/>
+    </div>
   )
 }
 
