@@ -52,7 +52,7 @@ export const Login = (props) => {
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Contraseña" id="pass" name="pass" />
                 <button type="submit">INICIAR SESIÓN</button>
             </form>
-            <ErrorModal show={modalShow} message='Usuario o contraseña incorrectos' onHide={() => setModalShow(false)} />
+            <ErrorModal show={modalShow} message='Usuario o contraseña incorrectos, en caso de recuperar contraseña puede consultarlo con Kanbanize' onHide={() => setModalShow(false)} />
         </div>
     )
 }
