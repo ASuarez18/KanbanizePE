@@ -35,7 +35,7 @@ export const Login = (props) => {
         }
         else {
             localStorage.setItem('apikey', data.apikey);
-            navigate('/tablero');
+            navigate('/home');
         }
 
         console.log(data);
