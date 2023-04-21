@@ -2,12 +2,16 @@
 .login-form,
 .register-form {
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
+    aspect-ratio: auto;
 }
 
-@media screen and (min-width: 600px) {
+@media (min-width: 300px){
     .login-container {
+        min-width: 40%;
+        position: relative; 
+        justify-content: center;
+        aspect-ratio: 16/9;
         padding: 5rem;
         border: 5px solid black;
         border-radius: 10px;
@@ -27,12 +31,14 @@ input {
     border: 2px solid black;
     border-radius: 20px;
 }
-
+.h01{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 button {
-    border: 10px solid white;
+    border: 2px solid black;
     background-color: #47525E;
-    padding: 15px;
-    border-radius: 30px;
+    padding: 0.5em;
+    border-radius: 20px;
     color: white;
 }
 
@@ -40,4 +46,10 @@ button {
     background: none;
     color: white;
     text-decoration: underline;
+    border-radius: 30px;
 }
+
+.react-switch {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
