@@ -1,11 +1,33 @@
 import React, { useState } from "react";
+import Switch from "react-switch";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "./ErrorModal";
 import './Login.css'
 import imagenes from "./assets/imagenes";
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n'
 
 
 export const Login = (props) => {
+    //Const y funcion para que sirva el cambio de idioma 
+    const { t } = useTranslation();
+    const [language, setLanguage] = useState(i18n.language);
+
+    function handleLanguageChange() {
+        const newLanguage = language === 'en' ? 'es' : 'en';
+        i18n.changeLanguage(newLanguage);
+        setLanguage(newLanguage);
+    }
+
+    //Const para el los cambios de estado del switch
+    const [checked, setChecked] = useState(false);
+    const handleChange = nextChecked => {
+      setChecked(nextChecked);
+      handleLanguageChange();
+      
+    };
+
+    //Const para fetch y llamada de la api para el login
     const navigate = useNavigate();
     const [modalShow, setModalShow] = useState(false);
     const [email, setEmail] = useState('');
@@ -39,20 +61,37 @@ export const Login = (props) => {
         }
 
         console.log(data);
+        
     }
    
     return (
         <div className="login-container">
-            <h1>BIENVENIDO A:</h1>
-            <img src={imagenes.img2}/>
+            <h1 className="h01">{t('Welcome to')}</h1>
+            <img className="img01" src={imagenes.img2}/>
             <form className="login-form" onSubmit={handleSubmit}>
 
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo Electronico" id="email" name="email" />
-     
-                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Contraseña" id="pass" name="pass" />
-                <button type="submit">INICIAR SESIÓN</button>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />
+                <p></p>
+                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
+                <p></p>
+                <button type="submit">{t('Login')}</button>
+
+                <div className="example">
+                <p></p>
+                <h2>{t('Lenguague')}</h2>
+                <label>
+                    <span>{t('English')}</span>
+                    <Switch
+                        onChange={handleChange} 
+                        checked={checked}
+                        className="react-switch"
+                    />
+                    <span> {t('Spanish')}</span>
+                </label>
+                </div>
             </form>
-            <ErrorModal show={modalShow} message='Usuario o contraseña incorrectos, en caso de recuperar contraseña puede consultarlo con Kanbanize' onHide={() => setModalShow(false)} />
+            <ErrorModal show={modalShow} title={'ERROR'} message= {t('Incorrect username or password, in case of recovering the password you can consult it with Kanbanize')} onHide={() => setModalShow(false)} />
         </div>
     )
+    
 }
