@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Tablero.css"
+import "../design/Tablero.css"
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
 

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Switch from "react-switch";
 import { useNavigate } from "react-router-dom";
-import ErrorModal from "./ErrorModal";
-import './Login.css'
-import imagenes from "./assets/imagenes";
+import ErrorModal from "../components/ErrorModal";
+import '../design/Login.css'
+import imagenes from "../components/imagenes";
 import { useTranslation } from 'react-i18next';
-import i18n from './i18n'
+import i18n from '../components/i18n'
 
 
 export const Login = (props) => {
@@ -78,7 +78,7 @@ export const Login = (props) => {
 
                 <div className="example">
                 <p></p>
-                <h2>{t('Lenguague')}</h2>
+                <h2>{t('Languague')}</h2>
                 <label>
                     <span>{t('English')}</span>
                     <Switch
