@@ -1,22 +1,27 @@
+import React from 'react';
+import "../design/WorkspaceDetails.css";
+import { Link } from 'react-router-dom';
 
-//! Mostrar workspaces
-const WorkspaceDetails =  ({ workspace, boards }) => {
-    return(
-        <div className="workspaces-container">
-            <h4>{workspace.name}</h4> {/* Nombre del workspace en la parte superior */}
-            <div className="boards-container">
-                {/* Mapeo de tableros segun la cantidad de objetos obtenidos en la variable boards */}
-                {
-                boards.map((board) => {
-                    //* Validación de el tablero corresponda al workspace
-                    if (board.workspace_id === workspace.workspace_id){
-                        //* Mostrar los detalles del tablero por medio de un nuevo componente
-                        return (<div key={board.board_id}>{board.name}</div>)
-                    }
-                })}
-            </div>
-        </div>
-    )
-}
+const WorkspaceDetails = ({ workspace, boards }) => {
+  return (
+    <div className="workspace-details-container">
+      <h4>{workspace.name}</h4>
+      <div className="boards-container">
+        {boards.map((board) => {
+          if (board.workspace_id === workspace.workspace_id) {
+            return (
+              <div key={board.board_id}>
+                <Link to={`/board/${board.board_id}`}>
+                  {board.name}
+                </Link>
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default WorkspaceDetails;

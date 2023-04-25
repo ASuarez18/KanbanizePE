@@ -1,5 +1,6 @@
 import React from 'react'
 import "../design/Tablero.css"
+import MyNavbar from '../components/navbar';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
 
@@ -51,13 +52,17 @@ export const Home = (props) => {
       }
     }
 
-    fetchBoards()
-    fetchWorkspace()
+    Promise.all([fetchWorkspace(), fetchBoards()])
+      .then(() => console.log("Both fetches completed!"))
+      .catch((error) => console.log("Error fetching data: ", error));
   }, []);
 
 
   return (
     <div >
+      <div >
+        <MyNavbar />
+      </div>
       {/* <img src={imagenes.img3}/> */}
       <div className="home">
         <div className="workspaces-container">
