@@ -12,15 +12,17 @@ export const Login = (props) => {
     //Const y funcion para que sirva el cambio de idioma 
     const { t } = useTranslation();
     const [language, setLanguage] = useState(i18n.language);
+    
 
     function handleLanguageChange() {
         const newLanguage = language === 'en' ? 'es' : 'en';
         i18n.changeLanguage(newLanguage);
         setLanguage(newLanguage);
+        localStorage.setItem('language', newLanguage);
     }
 
     //Const para el los cambios de estado del switch
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(language === 'es');
     const handleChange = nextChecked => {
       setChecked(nextChecked);
       handleLanguageChange();
@@ -78,7 +80,7 @@ export const Login = (props) => {
 
                 <div className="example">
                 <p></p>
-                <h2>{t('Languague')}</h2>
+                <h2>{t('Language')}</h2>
                 <label>
                     <span>{t('English')}</span>
                     <Switch

@@ -14,10 +14,12 @@ export const Home = (props) => {
   const [boards, setBoards] = useState([]);
 
   useEffect(() => {
+    
     apikey = localStorage.getItem('apikey');
     const values = {
       apikey: apikey
     };
+    
 
     const fetchWorkspace = async () => {
       const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workspaces`,
@@ -55,6 +57,7 @@ export const Home = (props) => {
     Promise.all([fetchWorkspace(), fetchBoards()])
       .then(() => console.log("Both fetches completed!"))
       .catch((error) => console.log("Error fetching data: ", error));
+
   }, []);
 
 

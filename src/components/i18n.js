@@ -1,21 +1,27 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import translationES from './idiomas/es.json';
-import translationEN from './idiomas/en.json';
+import es from './idiomas/es.json';
+import en from './idiomas/en.json';
+const resources = {
+  en: {
+    translation: en
+  },
+  es: {
+    translation: es
+  }
+};
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: translationEN,
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: 'en',
+    interpolation: {
+      escapeValue: false
     },
-    es: {
-      translation: translationES,
-    },
-  },
-  lng: 'en',
-  fallbackLng: 'en',
-  interpolation: {
-    escapeValue: false,
-  },
-});
+    react: {
+      useSuspense: false
+    }
+  });
+
 export default i18n;
