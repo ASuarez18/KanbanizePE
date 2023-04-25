@@ -18,7 +18,7 @@ function MyNavbar() {
     }
 
   return (
-    <Navbar bg="light" expand="lg" collapseOnSelect fixed="top">
+    <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect fixed="top">
       <Navbar.Brand href=" ">KANBANIZE PE</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

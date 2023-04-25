@@ -3,6 +3,7 @@
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 10px;
+    background-color: #a5a8d8;
   }
   
   .workspace-details-container h4 {
@@ -15,6 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
   }
   
   .boards-container div {
@@ -22,10 +24,15 @@
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 10px;
+    background-color: #577D86;
     cursor: pointer;
   }
   
   .boards-container div:hover {
     background-color: #f0f0f0;
+  }
+  .custom-link {
+    color: black;
+    text-decoration: none;
   }
   

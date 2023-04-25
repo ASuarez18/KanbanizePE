@@ -11,7 +11,7 @@ const WorkspaceDetails = ({ workspace, boards }) => {
           if (board.workspace_id === workspace.workspace_id) {
             return (
               <div key={board.board_id}>
-                <Link to={`/board/${board.board_id}`}>
+                <Link to={`/board/${board.board_id}`} className="custom-link">
                   {board.name}
                 </Link>
               </div>
