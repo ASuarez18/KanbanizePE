@@ -5,5 +5,6 @@ import tablero from '../components/assets/img/tablero.png'
 export default{
     "img1": fondo,
     "img2": logo,
-    "img3": tablero
+    "img3": tablero,
+    "img4": logo2
 }

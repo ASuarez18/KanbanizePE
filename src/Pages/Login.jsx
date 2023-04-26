@@ -69,7 +69,7 @@ export const Login = (props) => {
     return (
         <div className="login-container">
             <h1 className="h01">{t('Welcome to')}</h1>
-            <img className="img01" src={imagenes.img2}/>
+            <img className="img04" src={imagenes.img2}/>
             <form className="login-form" onSubmit={handleSubmit}>
 
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />

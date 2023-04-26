@@ -5,33 +5,32 @@ import i18n from 'i18next';
 import { useNavigate } from 'react-router-dom';
 
 function MyNavbar() {
-    const { t } = useTranslation();
-    const navigate = useNavigate();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   function changeLanguage(lang) {
-    i18n.changeLanguage(lang);
-
+      i18n.changeLanguage(lang);
   }
+
   function handleLogout() {
-    localStorage.removeItem('apikey');
-    navigate("/", { replace: true });
-    }
+      localStorage.removeItem('apikey');
+      navigate("/", { replace: true });
+  }
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect fixed="top">
-      <Navbar.Brand href=" ">KANBANIZE PE</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="barkanba">
-            <Nav.Link onClick={handleLogout}>{t('Log out')}</Nav.Link>
-            <NavDropdown title={t('Language')} id="basic-nav-dropdown">
-                <NavDropdown.Item onClick={() => changeLanguage('es')}>{t('Spanish')}</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => changeLanguage('en')}>{t('English')}</NavDropdown.Item>
-
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect fixed="top">
+          <Navbar.Brand href=" ">KANBANIZE PE</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ml-auto">
+                  <NavDropdown title={t('Language')} id="basic-nav-dropdown">
+                      <NavDropdown.Item onClick={() => changeLanguage('es')}>{t('Spanish')}</NavDropdown.Item>
+                      <NavDropdown.Item onClick={() => changeLanguage('en')}>{t('English')}</NavDropdown.Item>  
+                  </NavDropdown>
+                  <Nav.Link onClick={handleLogout}>{t('Log out')}</Nav.Link>
+              </Nav>
+          </Navbar.Collapse>
+      </Navbar>
   );
 }
 
