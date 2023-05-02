@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../components/i18n'
 
 
+
 export const Login = (props) => {
     //Const y funcion para que sirva el cambio de idioma 
     const { t } = useTranslation();
@@ -69,7 +70,7 @@ export const Login = (props) => {
     return (
         <div className="login-container">
             <h1 className="h01">{t('Welcome to')}</h1>
-            <img className="img04" src={imagenes.img2}/>
+            <img className="img04" src={imagenes.img4}/>
             <form className="login-form" onSubmit={handleSubmit}>
 
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />
@@ -86,6 +87,8 @@ export const Login = (props) => {
                     <Switch
                         onChange={handleChange} 
                         checked={checked}
+                        uncheckedIcon={false}
+                        checkedIcon={false}
                         className="react-switch"
                     />
                     <span> {t('Spanish')}</span>
@@ -95,5 +98,4 @@ export const Login = (props) => {
             <ErrorModal show={modalShow} title={'ERROR'} message= {t('Incorrect username or password, in case of recovering the password you can consult it with Kanbanize')} onHide={() => setModalShow(false)} />
         </div>
     )
-    
 }

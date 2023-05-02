@@ -1,5 +1,4 @@
 import React from 'react'
-import "../design/Tablero.css"
 import MyNavbar from '../components/navbar';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
@@ -12,6 +11,7 @@ export const Home = (props) => {
   // const navigate = useNavigate();
   const [workspace, setWorkspace] = useState([]);
   const [boards, setBoards] = useState([]);
+  
 
   useEffect(() => {
     
