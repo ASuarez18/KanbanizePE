@@ -1,11 +1,13 @@
 .collapsible-container {
-    width: 100vh;
-    max-width: 350px;
+    width: 100%;
+    /*max-width: 350px;*/
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 16px;
     background-color: black;
     color: white;
+    
+    
   }
   
   .collapsible-header {
@@ -14,6 +16,8 @@
     align-items: center;
     padding: 12px;
     cursor: pointer;
+    
+    
   }
   
   .collapsible-arrow {
@@ -38,6 +42,7 @@
     color: black;
     width: 100%;
     height: auto;
+    align-items: center;
   }
   .compone{
     background-color: white;
@@ -45,5 +50,6 @@
   .tarjeta{
     background-color: white;
     color: black;
-    height: 100px;
+    height: 20vh;
+    border-radius: 5px;
   }

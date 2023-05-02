@@ -110,35 +110,33 @@ export const Tablero = (props) => {
   }
   return (
     <div >
-      <div >
         <MyNavbar />
-      </div>
+        <div className='bigone'>
+          <Collapsible header="INITIATIVES WORKFLOW">
         <div>
-      <Collapsible header="INITIATIVES WORKFLOW">
-      <div>
-    <Collapsible title="Componente 1.1" header="Backlog">
-    <div className='compon'>
+          <Collapsible title="Componente 1.1" header="Backlog">
+            <div className='compon'>
               <Componente11 />
             </div>
-    </Collapsible>
-    <Collapsible title="Componente 1.1"  header="Request">
-      <div >
-      <Componente11 />
+          </Collapsible>
+          <Collapsible title="Componente 1.1"  header="Request">
+            <div >
+              <Componente11 />
+            </div>
+          </Collapsible>
+          <Collapsible title="Componente 1.1"  header="In progress">
+            <div>
+              <Componente11 />
+            </div>
+          </Collapsible>
+          <Collapsible title="Componente 1.1"  header="Done">
+            <div>
+              <Componente11 />
+          </div>
+        </Collapsible>
       </div>
-    </Collapsible>
-    <Collapsible title="Componente 1.1"  header="In progress">
-      <div>
-      <Componente11 />
-      </div>
-    </Collapsible>
-    <Collapsible title="Componente 1.1"  header="Done">
-      <div>
-      <Componente11 />
-      </div>
-    </Collapsible>
-  </div>
-      </Collapsible>
-        </div>
+          </Collapsible>
+            </div>
     </div>
   )
 }

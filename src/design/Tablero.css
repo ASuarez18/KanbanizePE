@@ -7,3 +7,8 @@
   .content {
     flex-grow: 1;
   }
+  .bigone{
+    position: relative;
+    width: 95vw;
+    margin-top: 80px;
+  }

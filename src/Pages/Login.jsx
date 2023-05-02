@@ -68,7 +68,7 @@ export const Login = (props) => {
     }
    
     return (
-        <div className="login-container">
+        <div className="login-container my-auto">
             <h1 className="h01">{t('Welcome to')}</h1>
             <img className="img04" src={imagenes.img4}/>
             <form className="login-form" onSubmit={handleSubmit}>
@@ -77,7 +77,7 @@ export const Login = (props) => {
                 <p></p>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
                 <p></p>
-                <button type="submit">{t('Login')}</button>
+                <button type="submit" style={{borderRadius:"15px"}}>{t('Login')}</button>
 
                 <div className="example">
                 <p></p>

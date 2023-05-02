@@ -2,7 +2,7 @@ import React from 'react'
 import MyNavbar from '../components/navbar';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
-
+import "../design/Home.css";
 import WorkspaceDetails from './WorkspaceDetails';
 
 
