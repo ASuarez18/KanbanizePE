@@ -12,3 +12,35 @@
     width: 95vw;
     margin-top: 80px;
   }
+
+  /*Estilos para el tablero*/
+
+  .workflow-details{
+    border: 3px solid #000000;
+    background-color: aliceblue;
+  }
+
+  .column-details{
+    color: #300dcf;
+    border: 1px solid #605e6a;
+    background-color: aliceblue;
+  }
+  
+  .column-child-details{
+    color: #605e6a;
+    background-color: aliceblue;
+  }
+
+  .card-details{
+    color: #605e6a;
+    background-color: rgb(111, 157, 198);
+    border: 1px solid #605e6a;
+    padding: 0px;
+    
+  }
+
+  .card-details strong{
+    color: #114956;
+    padding: 0px;
+  }
+

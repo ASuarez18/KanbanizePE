@@ -1,22 +1,25 @@
 import React from 'react'
 import "../design/Tablero.css"
 import MyNavbar from '../components/navbar';
+import WorkflowDetails from '../components/WorkflowDetails';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
 import Collapsible from '../components/colision';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-
+import '../design/Tablero.css'
 
 import Train from './Train';
 
 
 export const Tablero = (props) => {
-  let apikey = localStorage.getItem('apikey');
-  let b_ID = localStorage.getItem('boardId');
+  let apikey = localStorage.getItem('apikey'); // * Se obtiene el apikey del localstorage
+  let b_ID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
   // const navigate = useNavigate();
   const [columns, setColumns] = useState([]);
   const [cards, setCards] = useState([]);
+  const [workflows, setWorkflows] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -34,7 +37,7 @@ export const Tablero = (props) => {
     
 
     const fetchColumns = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/columns`,
+      const response = await fetch(`/columns`,
         {
           method: 'POST',
           headers: {
@@ -51,7 +54,7 @@ export const Tablero = (props) => {
     }
 
     const fetchCards = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards`,
+      const response = await fetch(`/cards`,
         {
           method: 'POST',
           headers: {
@@ -60,17 +63,48 @@ export const Tablero = (props) => {
           body: JSON.stringify(values)
         });
 
-      const cart = await response.json();
-      if (cart.response !== 'Invalid apikey') {
-        setCards(cart.data);
+      const card = await response.json();
+      if (card.response !== 'Invalid apikey') {
+        setCards(card.data.data);
       }
     }
 
-    Promise.all([fetchColumns(), fetchCards()])
-      .then(() => console.log("Both fetches completed!"))
+    const fetchWorkflows = async () => {
+      const response = await fetch(`/workflows`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const wrkflow = await response.json();
+      if (wrkflow.response !== 'Invalid apikey') {
+        setWorkflows(wrkflow.data);
+      }
+    }
+
+    const fetchUsers = async () => {
+      const response = await fetch(`/users`, 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const usrs = await response.json();
+      if (usrs.response !== 'Invalid apikey') {
+        setUsers(usrs.data);
+      }
+    }
+
+    Promise.all([fetchColumns(), fetchCards()], fetchWorkflows(), fetchUsers())
+      .then(() => console.log("All fetches completed!"))
       .catch((error) => console.log("Error fetching data: ", error));
 
   }, []);
+
 
   function Carousel({ items }) {
     const [currentItem, setCurrentItem] = useState(0);
@@ -111,7 +145,15 @@ export const Tablero = (props) => {
   return (
     <div >
         <MyNavbar />
-        <div className='bigone'>
+        <h1>.</h1>
+        <h1>Workflows</h1>
+        <div className="workflows-container">
+          {/* Mapeo de workflows usando un componente */}
+          {workflows.map((workflow) => ( 
+            <WorkflowDetails workflow={workflow} columns={columns} cards={cards} users={users} />
+          ))}
+        </div>
+        {/* <div className='bigone'>
           <Collapsible header="INITIATIVES WORKFLOW">
         <div>
           <Collapsible title="Componente 1.1" header="Backlog">
@@ -136,7 +178,7 @@ export const Tablero = (props) => {
         </Collapsible>
       </div>
           </Collapsible>
-            </div>
+            </div> */}
     </div>
   )
 }

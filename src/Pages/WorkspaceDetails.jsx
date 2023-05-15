@@ -16,7 +16,7 @@ const WorkspaceDetails = ({ workspace, boards }) => {
     if (board.workspace_id === workspace.workspace_id) {
       
       const handleClick = () => {
-        localStorage.setItem('boardId', board.board_id);
+        localStorage.setItem('boardId', board.board_id); // * Se guarda el boardId en el localStorage
         navigate(`/tablero`);
       };
       return (

@@ -7,13 +7,13 @@ import WorkspaceDetails from './WorkspaceDetails';
 
 
 export const Home = (props) => {
-  let apikey = localStorage.getItem('apikey');
+  let apikey = localStorage.getItem('apikey'); //* Se obtiene el apikey del localstorage
   // const navigate = useNavigate();
   const [workspace, setWorkspace] = useState([]);
   const [boards, setBoards] = useState([]);
   
 
-  useEffect(() => {
+  useEffect(() => { //* Se ejecuta al cargar la pagina
     
     apikey = localStorage.getItem('apikey');
     const values = {
@@ -21,7 +21,7 @@ export const Home = (props) => {
     };
     
 
-    const fetchWorkspace = async () => {
+    const fetchWorkspace = async () => { // * Se obtienen los workspaces
       const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workspaces`,
         {
           method: 'POST',
@@ -38,7 +38,7 @@ export const Home = (props) => {
       }
     }
 
-    const fetchBoards = async () => {
+    const fetchBoards = async () => { // * Se obtienen los boards
       const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/boards`,
         {
           method: 'POST',
@@ -56,7 +56,7 @@ export const Home = (props) => {
 
     Promise.all([fetchWorkspace(), fetchBoards()])
       .then(() => console.log("Both fetches completed!"))
-      .catch((error) => console.log("Error fetching data: ", error));
+      .catch((error) => console.log("Error fetching data: ", error)); //* Se ejecutan las dos promesas al mismo tiempo
 
   }, []);
 
