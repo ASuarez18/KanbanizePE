@@ -4,13 +4,12 @@ import '../design/CardForm.css'
 
 const CardForm = ( {workflow, columns, users, backlogs}) => {
     let apikey = localStorage.getItem('apikey');
-    // const [backlog_id, setBacklog_id] = useState(""); // Id de backlog (columna) obtenido de ...
     let backlog_id = 0;
     const [lane_id, setLane_id] = useState(workflow.workflow_id); // Id del workflow
     const [title, setTitle] = useState(""); // Título de la tarjeta
-    const [deadline, setDeadline] = useState(""); // Fecha límite de la tarjeta
-    const [owner_user_id, setOwner_user_id] = useState(0); // Id del usuario dueño de la tarjeta
-    const [priority, setPriority] = useState(0); // Prioridad de la tarjeta
+    const [deadline, setDeadline] = useState(null); // Fecha límite de la tarjeta //TODO: Arreglar e implementar datepicke
+    const [owner_user_id, setOwner_user_id] = useState(null); // Id del usuario dueño de la tarjeta
+    const [priority, setPriority] = useState(null); // Prioridad de la tarjeta
     // let backlogs = [];
     
     const [error, setError] = useState(null); // Error de validación
@@ -30,59 +29,60 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
     })
 
     const handlePriorityChange = (e) => {
-        setPriority(e.target.value);
+        if (priority === "null") {
+            setPriority("3")
+        }else{ 
+            setPriority(e.target.value);
+        }
     };
 
     const handleOwnerChange = (e) => {
         setOwner_user_id(e.target.value);
     };
 
-    
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let deadlineDate = deadline + "T12:00:00Z";
-
-        const card = {backlog_id, lane_id, title, deadlineDate, owner_user_id, priority};
         
-        fetch('cards/create', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "apikey": apikey
-            },
-            body: JSON.stringify(card)
-        }).then(() => {
-            console.log("Backlog_id: " + backlog_id, "lane_id: " + lane_id, "title: " + title, "deadline: " + deadlineDate, "owner_user_id: " + owner_user_id, "priority: " + priority)
-            // window.location.reload();
+        // setDeadline(deadline + "T12:00:00Z");
+
+        const formData = JSON.stringify({
+              column_id: backlog_id,
+              lane_id: lane_id,
+              title: title,
+              deadline: deadline,
+            //   deadline: "2023-03-30T12:00:00Z",
+              owner_user_id: owner_user_id,
+              priority: priority
         })
-
-        // const response = fetch('http://localhost:3001/cards/create', {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "apikey": apikey
-        //     },
-        //     body: JSON.stringify(card)
-        // });
-
-        // const data = response.json();
-        // if (data.response === 'Invalid apikey') {
-        //     alert("Invalid apikey");
-        // }
-        // if (!response.ok){
-        //     setError("Error al crear tarjeta");
-        // }
-        // if (response.ok){
-        //     alert("Card created");
-        //     setTitle("");
-        //     setLane_id("");
-        //     setDeadline("");
-        //     setOwner_user_id("");
-        //     setPriority("");
-        // }
-    }
+      
+        try {
+          const response = await fetch("/cards/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: apikey 
+            },
+            body: formData,
+          });
+      
+          if (response.ok) {
+            const data = await response.json();
+            window.location.reload();
+            console.log("Respuesta del servidor:", data);
+            
+          } else {
+            console.log("Error en la solicitud:", response.status);
+            // Maneja el error de acuerdo a tus necesidades
+          }
+        } catch (error) {
+          console.error("Error en la solicitud:", error);
+          // Maneja el error de acuerdo a tus necesidades
+        }
+        // console.log("api key: " + apikey)
+        // console.log("apikey: " + apikey, "Backlog_id: " + backlog_id, "lane_id: " + lane_id, "title: " + title, "deadline: " + deadline, "owner_user_id: " + owner_user_id, "priority: " + priority)
+      };
+      
 
     return(
         <form className="card-form" onSubmit={handleSubmit}>
@@ -94,16 +94,15 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
             />
-            <label>Deadline:</label>
+            {/* <label>Deadline:</label>
             <input 
                 type="date" 
                 onChange={(e) => setDeadline(e.target.value)}
                 value={deadline}
-            />
+            /> */}
             <label>Dueño de tarjeta:</label>
             <select value={owner_user_id} onChange={handleOwnerChange} >
-                <option value="">Seleccione un owner</option>
-                <option value="null">Ninguno</option>
+                <option value="null">Seleccione un owner</option>
                 {users.map((user) => {
                     return(
                         <option value={user.user_id}>{user.username}</option>
