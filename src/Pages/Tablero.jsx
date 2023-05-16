@@ -105,6 +105,24 @@ export const Tablero = (props) => {
 
   }, []);
 
+  //TODO: Validar ID del usuario dado el nombre de usuario/dropdown
+  let usuarios = [];
+  users.map((user) => {
+      user.board_roles.map((board_role) => {
+          if (board_role.board_id == b_ID) {
+              usuarios.push(user);
+          }
+      })
+  })
+
+  let backlogs = [];
+  columns.map((column) => {
+    if (column.name === "Backlog") {
+        backlogs.push(column);
+    }
+})
+
+
 
   function Carousel({ items }) {
     const [currentItem, setCurrentItem] = useState(0);
@@ -150,7 +168,7 @@ export const Tablero = (props) => {
         <div className="workflows-container">
           {/* Mapeo de workflows usando un componente */}
           {workflows.map((workflow) => ( 
-            <WorkflowDetails workflow={workflow} columns={columns} cards={cards} users={users} />
+            <WorkflowDetails workflow={workflow} columns={columns} cards={cards} users={usuarios} backlogs={backlogs} />
           ))}
         </div>
         {/* <div className='bigone'>
