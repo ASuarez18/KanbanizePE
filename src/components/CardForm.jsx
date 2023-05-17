@@ -13,14 +13,7 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
     // let backlogs = [];
     
     const [error, setError] = useState(null); // Error de validación
-    
-    //TODO: Mover este código a un componente arriba
-    // Recorrer columnas y obtener el backlog_id de la columna que tenga el nombre "Backlog"
-    // columns.map((column) => {
-    //     if (column.name === "Backlog") {
-    //         backlogs.push(column);
-    //     }
-    // })
+
 
     backlogs.map((backlog) => {
         if (backlog.workflow_id === workflow.workflow_id) {
@@ -44,13 +37,13 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
         e.preventDefault();
 
         
-        // setDeadline(deadline + "T12:00:00Z");
+        let deadlineDate = deadline.toString() + "T12:00:00Z";
 
         const formData = JSON.stringify({
               column_id: backlog_id,
               lane_id: lane_id,
               title: title,
-              deadline: deadline,
+              deadline: deadlineDate,
             //   deadline: "2023-03-30T12:00:00Z",
               owner_user_id: owner_user_id,
               priority: priority
@@ -70,6 +63,7 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
             const data = await response.json();
             window.location.reload();
             console.log("Respuesta del servidor:", data);
+            console.log("Fecha límite:", deadline);
             
           } else {
             console.log("Error en la solicitud:", response.status);
@@ -94,12 +88,15 @@ const CardForm = ( {workflow, columns, users, backlogs}) => {
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
             />
-            {/* <label>Deadline:</label>
+            {
+              //TODO: Arreglar e implementar datepicker
+            }
+            <label>Deadline:</label>
             <input 
                 type="date" 
                 onChange={(e) => setDeadline(e.target.value)}
                 value={deadline}
-            /> */}
+            />
             <label>Dueño de tarjeta:</label>
             <select value={owner_user_id} onChange={handleOwnerChange} >
                 <option value="null">Seleccione un owner</option>
