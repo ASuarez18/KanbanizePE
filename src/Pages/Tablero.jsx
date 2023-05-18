@@ -1,5 +1,4 @@
 import React from 'react'
-import "../design/Tablero.css"
 import MyNavbar from '../components/navbar';
 import WorkflowDetails from '../components/WorkflowDetails';
 // import imagenes from "./assets/imagenes";
