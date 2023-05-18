@@ -1,9 +1,8 @@
 import React from 'react'
 import MyNavbar from '../components/navbar';
-// import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
-import "../design/Home.css";
-import WorkspaceDetails from './WorkspaceDetails';
+import "../styles/Home.css";
+import WorkspaceDetails from '../components/WorkspaceDetails';
 
 
 export const Home = (props) => {
@@ -11,15 +10,15 @@ export const Home = (props) => {
   // const navigate = useNavigate();
   const [workspace, setWorkspace] = useState([]);
   const [boards, setBoards] = useState([]);
-  
+
 
   useEffect(() => { //* Se ejecuta al cargar la pagina
-    
+
     apikey = localStorage.getItem('apikey');
     const values = {
       apikey: apikey
     };
-    
+
 
     const fetchWorkspace = async () => { // * Se obtienen los workspaces
       const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workspaces`,
@@ -55,8 +54,6 @@ export const Home = (props) => {
     }
 
     Promise.all([fetchWorkspace(), fetchBoards()])
-      .then(() => console.log("Both fetches completed!"))
-      .catch((error) => console.log("Error fetching data: ", error)); //* Se ejecutan las dos promesas al mismo tiempo
 
   }, []);
 
@@ -66,11 +63,10 @@ export const Home = (props) => {
       <div >
         <MyNavbar />
       </div>
-      {/* <img src={imagenes.img3}/> */}
       <div className="home">
         <div className="workspaces-container">
-          { workspace && workspace.map((workspace) => (
-            <WorkspaceDetails key={workspace.workspace_id} workspace={workspace} boards={boards}/>
+          {workspace && workspace.map((workspace) => (
+            <WorkspaceDetails key={workspace.workspace_id} workspace={workspace} boards={boards} />
           ))}
 
         </div>

@@ -19,7 +19,7 @@ function App() {
           <Route path="/tablero" element={<Tablero />}></Route>
         </Routes>
       </Router>
-      
+
     </div>
   );
 }

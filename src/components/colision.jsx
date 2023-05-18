@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../design/discoli.css';
+import '../styles/discoli.css';
 
 function Collapsible(props) {
   const [isExpanded, setIsExpanded] = useState(false);
