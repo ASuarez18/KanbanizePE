@@ -6,7 +6,9 @@ import '../styles/Login.css'
 import imagenes from "../components/imagenes";
 import { useTranslation } from 'react-i18next';
 import i18n from '../components/i18n'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet';
 
 
 export const Login = () => {
@@ -65,34 +67,62 @@ export const Login = () => {
   }
 
   return (
+    
     <div className="login-container my-auto">
-      <h1 className="h01">{t('Welcome to')}</h1>
-      <img className="img04" src={imagenes.img4} />
-      <form className="login-form" onSubmit={handleSubmit}>
+    <img className="wave" src="http://github.com/sefyudem/Responsive-Login-Form/blob/master/img/wave.png?raw=true"></img>
+    <div class="centered-formr">
+        <div class="login-content"> 
+            <form className="login-form" onSubmit={handleSubmit}>
+             <img className="img04" src={imagenes.img4} style={{ maxWidth: '100%', height: 'auto' }}/>
+                <h1 className="h01">{t('Welcome')}</h1>
 
-        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />
-        <p></p>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
-        <p></p>
-        <button type="submit" style={{ borderRadius: "15px" }}>{t('Login')}</button>
+                <div className="input-div one">
+                  <div className="i">
+                    <FontAwesomeIcon icon={faUser} />
+                  </div>
+                  <div className="div">
+                          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />
+                        <p></p>
+                  </div>
+               </div>
 
-        <div className="example">
-          <p></p>
-          <h2>{t('Language')}</h2>
-          <label>
-            <span>{t('English')}</span>
-            <Switch
-              onChange={handleChange}
-              checked={checked}
-              uncheckedIcon={false}
-              checkedIcon={false}
-              className="react-switch"
-            />
-            <span> {t('Spanish')}</span>
-          </label>
+               <div className="input-div pass">
+           		   <div className="i"> 
+                      <FontAwesomeIcon icon={faLock} />
+           		   </div>
+           		   <div class="div">
+           		    	    
+                           <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
+                            <p></p>
+            	   </div>
+            	</div>
+                
+                <button type="submit" className="btn" style={{ borderRadius: "15px" }}>{t('Login')}</button>
+                <div className="example">
+                <p></p>
+                <h3>{t('Language')}</h3>
+                <label>
+                    <span>{t('English')}</span>
+                    <Switch
+                    onChange={handleChange}
+                    checked={checked}
+                    uncheckedIcon={false}
+                    checkedIcon={false}
+                    className="react-switch"
+                    />
+                    <span> {t('Spanish')}</span>
+                </label>
+                </div>
+            </form>
         </div>
-      </form>
+    </div>
+
       <ErrorModal show={modalShow} title={'ERROR'} message={t('Incorrect username or password, in case of recovering the password you can consult it with Kanbanize')} onHide={() => setModalShow(false)} />
     </div>
+
+
+
+
+
   )
 }
