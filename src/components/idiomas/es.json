@@ -8,5 +8,6 @@
     "Login":"Iniciar Sesión",
     "Email":"Correo Electronico",
     "Password":"Contraseña",
+    "Domain":"Dominio",
     "Incorrect username or password, in case of recovering the password you can consult it with Kanbanize":"Usuario o contraseña incorrectos, en caso de recuperar contraseña puede consultarlo con Kanbanize"
 }

@@ -13,6 +13,7 @@ import '../styles/Tablero.css'
 export const Tablero = () => {
   let apikey = localStorage.getItem('apikey'); // * Se obtiene el apikey del localstorage
   let b_ID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
+  let dom =localStorage.getItem('dominioid'); 
   // const navigate = useNavigate();
   const [columns, setColumns] = useState([]);
   const [cards, setCards] = useState([]);
@@ -27,6 +28,7 @@ export const Tablero = () => {
   useEffect(() => {
 
     apikey = localStorage.getItem('apikey');
+    dom = localStorage.getItem('dominioid');
     b_ID = localStorage.getItem('boardId')
     const values = {
       apikey: apikey,

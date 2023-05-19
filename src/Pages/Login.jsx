@@ -35,12 +35,13 @@ export const Login = () => {
   const [modalShow, setModalShow] = useState(false);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-
+  const [dom, setDom] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
     const values = {
       email: email,
-      pass: pass
+      pass: pass,
+      dominio: dom
     };
 
     const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/login`,
@@ -59,6 +60,7 @@ export const Login = () => {
     }
     else {
       localStorage.setItem('apikey', data.apikey);
+      localStorage.setItem('dominioid',dom);
       navigate('/home');
     }
 
@@ -73,6 +75,8 @@ export const Login = () => {
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t('Email')} id="email" name="email" />
         <p></p>
         <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
+        <p></p>
+        <input value={dom} onChange={(e) => setDom(e.target.value)} type="text" placeholder={t('Dominio')} id="dominio" name="dominio" />
         <p></p>
         <button type="submit" style={{ borderRadius: "15px" }}>{t('Login')}</button>
 
