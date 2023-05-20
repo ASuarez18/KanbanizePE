@@ -21,6 +21,8 @@ export const Tablero = () => {
   const [users, setUsers] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  let cardsF = cards;
+
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
@@ -119,6 +121,20 @@ export const Tablero = () => {
     }
   })
 
+  if (localStorage.getItem('userID') !== null) {
+    let userID = localStorage.getItem('userID');
+    let cardsFiltradas = [];
+    cards.map((card) => {
+      if (card.owner_user_id == userID) {
+        cardsFiltradas.push(card);
+      }
+    })
+    cardsF = cardsFiltradas;
+  } else if (localStorage.getItem('userID') === null) {
+    console.alert("No hay usuario seleccionado");
+    cardsF = cards;
+  }
+
 
 
   function Carousel({ items }) {
@@ -169,7 +185,7 @@ export const Tablero = () => {
       <div className="workflows-container">
         {/* Mapeo de workflows usando un componente */}
         {workflows.map((workflow) => (
-          <WorkflowDetails workflow={workflow} columns={columns} cards={cards} users={usuarios} backlogs={backlogs} />
+          <WorkflowDetails workflow={workflow} columns={columns} cards={cardsF} users={usuarios} backlogs={backlogs} />
         ))}
       </div>
       {/* <div className='bigone'>

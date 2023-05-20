@@ -9,17 +9,30 @@ const Filter = (users) => {
     const handleOwnerChange = (e) => {
         setOwner_user_id(e.target.value);
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (owner_user_id === "null") {
+            localStorage.setItem("userID", null);
+        } else {
+            localStorage.setItem("userID", owner_user_id);
+            window.location.reload();
+        }
+        // console.log("UserID " + owner_user_id);
+    };
+
     return (
-        <form className="filter-form">
+        <form className="filter-form" onSubmit={handleSubmit} >
             <label>Owner</label>
             <select value={owner_user_id} onChange={handleOwnerChange} >
             <option value="null">Seleccione un owner</option>
-            {users.map((user) => {
-            return (
-                <option value={user.user_id}>{user.username}</option>
-            )
+            {users.users.map((user) => {
+                    return (
+                        <option value={user.user_id}>{user.username}</option>
+                    )
             })}
         </select>
+        <button>Filtrar</button>
         </form>
         
         
