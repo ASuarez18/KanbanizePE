@@ -1,6 +1,7 @@
 import React from 'react'
 import MyNavbar from '../components/navbar';
 import WorkflowDetails from '../components/WorkflowDetails';
+import Filter from '../components/Filter';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
 import Collapsible from '../components/colision';
@@ -161,6 +162,10 @@ export const Tablero = () => {
       <MyNavbar />
       <h1>.</h1>
       <h1>Workflows</h1>
+      <div className="filter-container">
+        <h4>Filtrar</h4>
+        <Filter users={usuarios} />
+      </div>
       <div className="workflows-container">
         {/* Mapeo de workflows usando un componente */}
         {workflows.map((workflow) => (
