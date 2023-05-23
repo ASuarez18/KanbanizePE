@@ -21,7 +21,8 @@ export const Tablero = () => {
   const [users, setUsers] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  let cardsF = cards;
+
+
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -121,21 +122,18 @@ export const Tablero = () => {
     }
   })
 
-  if (localStorage.getItem('userID') !== null) {
-    let userID = localStorage.getItem('userID');
-    let cardsFiltradas = [];
+  let user_id = localStorage.getItem('userID');
+
+  let cardsF = [];
+  if (user_id === 'null') {
+    cardsF = cards;
+  } else {
     cards.map((card) => {
-      if (card.owner_user_id == userID) {
-        cardsFiltradas.push(card);
+      if (card.owner_user_id == user_id) {
+        cardsF.push(card);
       }
     })
-    cardsF = cardsFiltradas;
-  } else if (localStorage.getItem('userID') === null) {
-    console.alert("No hay usuario seleccionado");
-    cardsF = cards;
   }
-
-
 
   function Carousel({ items }) {
     const [currentItem, setCurrentItem] = useState(0);
@@ -176,7 +174,7 @@ export const Tablero = () => {
   return (
     <div >
       <MyNavbar />
-      <h1>.</h1>
+      <h1>.</h1> {/* Punto para alinear el contenido una linea abajo dado a la navbar */}
       <h1>Workflows</h1>
       <div className="filter-container">
         <h4>Filtrar</h4>

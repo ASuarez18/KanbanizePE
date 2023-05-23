@@ -44,3 +44,11 @@
   color: #114956;
   padding: 0px;
 }
+
+.filter-container {
+  margin-top: 20px;
+}
+
+.filter-container h4 {
+  margin-bottom: 10px;
+}
