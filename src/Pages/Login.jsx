@@ -7,8 +7,9 @@ import imagenes from "../components/imagenes";
 import { useTranslation } from 'react-i18next';
 import i18n from '../components/i18n'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet';
+import { dom } from "aria-query";
 
 
 export const Login = () => {
@@ -37,12 +38,14 @@ export const Login = () => {
   const [modalShow, setModalShow] = useState(false);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [dom, setDom] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const values = {
       email: email,
-      pass: pass
+      pass: pass,
+      dom: dom
     };
 
     const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/login`,
@@ -61,6 +64,7 @@ export const Login = () => {
     }
     else {
       localStorage.setItem('apikey', data.apikey);
+      localStorage.setItem('dominioid', dom);
       navigate('/home');
     }
 
@@ -93,6 +97,17 @@ export const Login = () => {
            		   <div class="div">
            		    	    
                            <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
+                            <p></p>
+            	   </div>
+            	</div>
+
+              <div className="input-div dom">
+           		   <div className="i"> 
+                      <FontAwesomeIcon icon={faBuildingUser} />
+           		   </div>
+           		   <div class="div">
+           		    	    
+                           <input value={dom} onChange={(e) => setDom(e.target.value)} type="text" placeholder={t('Domain')} id="dom" name="dom" />
                             <p></p>
             	   </div>
             	</div>

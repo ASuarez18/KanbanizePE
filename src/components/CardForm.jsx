@@ -4,6 +4,7 @@ import '../styles/CardForm.css'
 
 const CardForm = ({ workflow, columns, users, backlogs }) => {
   let apikey = localStorage.getItem('apikey');
+  let dom = localStorage.getItem('dominioid');
   let backlog_id = 0;
   const [lane_id, setLane_id] = useState(workflow.workflow_id); // Id del workflow
   const [title, setTitle] = useState(""); // Título de la tarjeta
@@ -53,7 +54,8 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          apikey: apikey
+          apikey: apikey,
+          dom: dom,
         },
         body: formData,
       });

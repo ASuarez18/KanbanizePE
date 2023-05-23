@@ -7,6 +7,7 @@ import WorkspaceDetails from '../components/WorkspaceDetails';
 
 export const Home = (props) => {
   let apikey = localStorage.getItem('apikey'); //* Se obtiene el apikey del localstorage
+  let dom = localStorage.getItem('dominioid'); //* Se obtiene el dominioid del localstorage
   // const navigate = useNavigate();
   const [workspace, setWorkspace] = useState([]);
   const [boards, setBoards] = useState([]);
@@ -15,8 +16,10 @@ export const Home = (props) => {
   useEffect(() => { //* Se ejecuta al cargar la pagina
 
     apikey = localStorage.getItem('apikey');
+    dom = localStorage.getItem('dominioid');
     const values = {
-      apikey: apikey
+      apikey: apikey,
+      dom: dom
     };
 
 
