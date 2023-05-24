@@ -1,6 +1,7 @@
 import React from 'react'
 import MyNavbar from '../components/navbar';
 import WorkflowDetails from '../components/WorkflowDetails';
+import Filter from '../components/Filter';
 // import imagenes from "./assets/imagenes";
 import { useEffect, useState } from 'react';
 import Collapsible from '../components/colision';
@@ -20,6 +21,9 @@ export const Tablero = () => {
   const [workflows, setWorkflows] = useState([]);
   const [users, setUsers] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
+
+
+
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -121,7 +125,18 @@ export const Tablero = () => {
     }
   })
 
+  let user_id = localStorage.getItem('userID');
 
+  let cardsF = [];
+  if (user_id === 'null') {
+    cardsF = cards;
+  } else {
+    cards.map((card) => {
+      if (card.owner_user_id == user_id) {
+        cardsF.push(card);
+      }
+    })
+  }
 
   function Carousel({ items }) {
     const [currentItem, setCurrentItem] = useState(0);
@@ -162,12 +177,16 @@ export const Tablero = () => {
   return (
     <div >
       <MyNavbar />
-      <h1>.</h1>
+      <h1>.</h1> {/* Punto para alinear el contenido una linea abajo dado a la navbar */}
       <h1>Workflows</h1>
+      <div className="filter-container">
+        <h4>Filtrar</h4>
+        <Filter users={usuarios} />
+      </div>
       <div className="workflows-container">
         {/* Mapeo de workflows usando un componente */}
         {workflows.map((workflow) => (
-          <WorkflowDetails workflow={workflow} columns={columns} cards={cards} users={usuarios} backlogs={backlogs} />
+          <WorkflowDetails workflow={workflow} columns={columns} cards={cardsF} users={usuarios} backlogs={backlogs} />
         ))}
       </div>
       {/* <div className='bigone'>

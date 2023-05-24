@@ -11,6 +11,7 @@ export const Home = (props) => {
   // const navigate = useNavigate();
   const [workspace, setWorkspace] = useState([]);
   const [boards, setBoards] = useState([]);
+  localStorage.setItem('userID', null)
 
 
   useEffect(() => { //* Se ejecuta al cargar la pagina
