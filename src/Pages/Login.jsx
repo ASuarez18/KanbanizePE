@@ -103,7 +103,7 @@ export const Login = () => {
 
               <div className="input-div dom">
            		   <div className="i"> 
-                      <FontAwesomeIcon icon={faBuildingUser} />
+                      <FontAwesomeIcon icon={faLock} />
            		   </div>
            		   <div class="div">
            		    	    

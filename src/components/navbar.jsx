@@ -14,6 +14,7 @@ function MyNavbar() {
 
   function handleLogout() {
     localStorage.removeItem('apikey');
+    localStorage.removeItem('dominioid');
     navigate("/", { replace: true });
   }
 
