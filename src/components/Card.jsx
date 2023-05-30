@@ -8,7 +8,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
 
-  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com"
+  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com";
 
   const {t} = useTranslation();
   const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
@@ -35,7 +35,9 @@ const Card = ({ card, users, workflow, backlogs}) => {
 
       if (response.ok) {
         const data = await response.json();
+        const texton = data;
         console.log(data);
+
         setShowCommentModal(true);
       }
     } catch (error) {
@@ -127,7 +129,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
       <p>
         <strong>Priority:</strong>
         {
-          card.priority === 1 ? <span className="low-priority"> {t}</span> :
+          card.priority === 1 ? <span className="low-priority"> Baja</span> :
             card.priority === 2 ? <span className="medium-priority"> Alta</span> :
               card.priority === 3 ? <span className="average-priority"> Promedio</span> :
                 card.priority === 4 ? <span className="low-priority"> Baja</span> :
@@ -151,7 +153,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
         contentLabel="Comment Modal"
       >
         <form onSubmit={handleCommentSubmit}>
-          <h2>aaaa</h2>
+          <p>Introduce a comment:</p>
           <textarea
             placeholder="Enter your comment..."
             value={comment}
