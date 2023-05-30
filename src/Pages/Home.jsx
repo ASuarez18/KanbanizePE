@@ -29,7 +29,9 @@ export const Home = (props) => {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "apikey": apikey,
+            "dom": dom
           },
           body: JSON.stringify(values)
         });
@@ -46,7 +48,9 @@ export const Home = (props) => {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "apikey": apikey,
+            "dom": dom
           },
           body: JSON.stringify(values)
         });
