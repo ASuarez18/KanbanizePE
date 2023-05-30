@@ -9,7 +9,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
   let dom = localStorage.getItem('dominioid');
   const {t} = useTranslation();
   const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
-  const [card_id, setCard_id] = useState(card.card_id); // Id de la tarjeta
+  const [cardid, setCard_id] = useState(card.card_id); // Id de la tarjeta
 
   
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -20,13 +20,13 @@ const Card = ({ card, users, workflow, backlogs}) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/cards/comments", {
+      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/comments", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           apikey: apikey,
           dom: dom,
-          card_id: card_id,
+          cardid: cardid,
         },
       });
 
@@ -48,13 +48,13 @@ const Card = ({ card, users, workflow, backlogs}) => {
     })
 
     try {
-      const response = await fetch("/cards/comments/create", {
+      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/comments/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           apikey: apikey,
           dom: dom,
-          card_id: card_id,
+          cardid: cardid,
         },
         body: formData,
       });
@@ -85,13 +85,13 @@ const Card = ({ card, users, workflow, backlogs}) => {
     })
 
     try {
-      const response = await fetch("/cards/move", {
+      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/move", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           apikey: apikey,
           dom: dom,
-          card_id: card_id,
+          cardid: cardid,
         },
         body: formData,
       });
