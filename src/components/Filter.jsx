@@ -25,7 +25,7 @@ const Filter = (users) => {
         <form className="filter-form" onSubmit={handleSubmit} >
             <label>Owner</label>
             <select value={owner_user_id} onChange={handleOwnerChange} >
-            <option value="null">Seleccione un owner</option>
+            <option value="null">Todos</option>
             {users.users.map((user) => {
                     return (
                         <option value={user.user_id}>{user.username}</option>

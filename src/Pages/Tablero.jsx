@@ -121,6 +121,7 @@ export const Tablero = () => {
   let backlogs = [];
   columns.map((column) => {
     if (column.name === "Backlog") {
+      
       backlogs.push(column);
     }
   })

@@ -55,12 +55,14 @@ export const Login = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
+
       });
 
     const data = await response.json();
 
     if (data.response === 'Invalid email or password.') {
       setModalShow(true);
+      console.log(values);
     }
     else {
       localStorage.setItem('apikey', data.apikey);

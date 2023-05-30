@@ -1,9 +1,114 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useState } from "react";
 import "../styles/Tablero.css";
+import Modal from 'react-modal';
 
-const Card = ({ card, users }) => {
-  const { t } = useTranslation();
+const Card = ({ card, users, workflow, backlogs}) => {
+  let apikey = localStorage.getItem('apikey');
+  let dom = localStorage.getItem('dominioid');
+  const {t} = useTranslation();
+  const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
+  const [card_id, setCard_id] = useState(card.card_id); // Id de la tarjeta
+
+  
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [comment, setComment] = useState('');
+
+  const handleCommentClick = async(e) => {
+
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/cards/comments", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: apikey,
+          dom: dom,
+          card_id: card_id,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setShowCommentModal(true);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    const formData = JSON.stringify({
+      text: comment,
+    })
+
+    try {
+      const response = await fetch("/cards/comments/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: apikey,
+          dom: dom,
+          card_id: card_id,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Submitted comment:', comment);
+        // Reset the comment state and close the modal
+        setComment('');
+        setShowCommentModal(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+
+    }
+
+    
+    // Handle submitting the comment
+    // You can make an API call or update the state accordingly
+
+  };
+
+  const handleMoveNext =async (e) => {
+    e.preventDefault(); 
+
+    const formData = JSON.stringify({
+      column_id: column_id + 1,
+    })
+
+    try {
+      const response = await fetch("/cards/move", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: apikey,
+          dom: dom,
+          card_id: card_id,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        console.log(column_id);
+
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error.message);
+      console.log(column_id);
+    }
+  };
+
   return (
     <div className="card-details">
       {/* Nombre de tarjeta */}
@@ -28,9 +133,32 @@ const Card = ({ card, users }) => {
       </p>
       {/* Deadline dependiente de si tiene o no tiene */}
       {card.deadline === null ? <p><strong>Deadline:</strong> Sin deadline</p> : <p><strong>Deadline:</strong> {(card.deadline).substring(0, 10)}</p>}
-      <p><button>Next</button></p>
+      {/*<p>Id tarjeta: {card.card_id}</p>
+      <p>Id columna: {card.column_id}</p>*/}
+       <p>
+        <button onClick={handleCommentClick}>Comentar</button>
+      </p>
+      <p>
+        <button onClick={handleMoveNext}>Next</button>
+      </p>
+
+      <Modal
+        isOpen={showCommentModal}
+        onRequestClose={() => setShowCommentModal(false)}
+        contentLabel="Comment Modal"
+      >
+        <form onSubmit={handleCommentSubmit}>
+          <h2>aaaa</h2>
+          <textarea
+            placeholder="Enter your comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
 export default Card;
