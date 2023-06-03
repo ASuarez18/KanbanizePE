@@ -7,6 +7,7 @@ import imagenes from "../components/imagenes";
 import { useTranslation } from 'react-i18next';
 import i18n from '../components/i18n'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faLock, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet';
 import { dom } from "aria-query";
@@ -73,15 +74,16 @@ export const Login = () => {
   }
 
   return (
-    
-    <div className="login-container my-auto">
-    <img className="wave" src="http://github.com/sefyudem/Responsive-Login-Form/blob/master/img/wave.png?raw=true"></img>
-    <div class="centered-formr">
+ 
+
+    <div className="overlay my-auto">
+    <div class="centered-form">
         <div class="login-content"> 
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form>
              <img className="img04" src={imagenes.img4} style={{ maxWidth: '100%', height: 'auto' }}/>
                 <h1 className="h01">{t('Welcome')}</h1>
-
+                  
+                {/* Input del correo de usuario*/}
                 <div className="input-div one">
                   <div className="i">
                     <FontAwesomeIcon icon={faUser} />
@@ -92,31 +94,40 @@ export const Login = () => {
                   </div>
                </div>
 
+              {/* Input de password*/}
                <div className="input-div pass">
            		   <div className="i"> 
                       <FontAwesomeIcon icon={faLock} />
            		   </div>
            		   <div class="div">
-           		    	    
                            <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder={t('Password')} id="pass" name="pass" />
                             <p></p>
+
             	   </div>
             	</div>
 
+              {/* Input del dominio*/}
               <div className="input-div dom">
+                
            		   <div className="i"> 
-                      <FontAwesomeIcon icon={faLock} />
+                  <FontAwesomeIcon icon={faInfoCircle} />
+            
+                  <FontAwesomeIcon icon={faLock} />
+
            		   </div>
            		   <div class="div">
-           		    	    
                            <input value={dom} onChange={(e) => setDom(e.target.value)} type="text" placeholder={t('Domain')} id="dom" name="dom" />
+                            
                             <p></p>
+                            
             	   </div>
             	</div>
-                
+      
+      {/* Boton de login*/}
                 <button type="submit" className="btn" style={{ borderRadius: "15px" }}>{t('Login')}</button>
                 <div className="example">
                 <p></p>
+      {/* Cambio de idioma*/}
                 <h3>{t('Language')}</h3>
                 <label>
                     <span>{t('English')}</span>
