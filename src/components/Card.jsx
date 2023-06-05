@@ -155,7 +155,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
         <form onSubmit={handleCommentSubmit}>
           <p>Introduce a comment:</p>
           <textarea
-            placeholder="Enter your comment..."
+            placeholder={texton}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />

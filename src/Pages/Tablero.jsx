@@ -13,7 +13,7 @@ import '../styles/Tablero.css'
 
 export const Tablero = () => {
   let apikey = localStorage.getItem('apikey'); // * Se obtiene el apikey del localstorage
-  let b_ID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
+  let bID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
   let dom =localStorage.getItem('dominioid'); 
   // const navigate = useNavigate();
   const [columns, setColumns] = useState([]);
@@ -33,11 +33,11 @@ export const Tablero = () => {
 
     apikey = localStorage.getItem('apikey');
     dom = localStorage.getItem('dominioid');
-    b_ID = localStorage.getItem('boardId')
+    bID = localStorage.getItem('boardId')
     const values = {
       apikey: apikey,
       dom: dom,
-      b_ID: b_ID
+      bID: bID
     };
 
 
@@ -112,7 +112,7 @@ export const Tablero = () => {
   let usuarios = [];
   users.map((user) => {
     user.board_roles.map((board_role) => {
-      if (board_role.board_id == b_ID) {
+      if (board_role.board_id == bID) {
         usuarios.push(user);
       }
     })
