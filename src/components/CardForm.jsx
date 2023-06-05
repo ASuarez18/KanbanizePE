@@ -50,7 +50,7 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
     })
 
     try {
-      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/create", {
+      const response = await fetch("http://localhost:3013/cards/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

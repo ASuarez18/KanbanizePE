@@ -8,6 +8,7 @@
   color: white;
   height: 130%;
   width: 90vw;
+  
 }
 
 .workspace-details-container h4 {
@@ -27,13 +28,38 @@
 .boards-container div {
   margin: 10px;
   padding: 10px;
-  border: 3px solid black;
+  border: 3px solid rgb(2, 2, 2);
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
 
 }
+@media screen and (max-width: 425px) {
 
+  .boards-container div {
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    height:70px;
+  }
+
+  .workspace-details-container {
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 130%;
+    width: 90vw;
+  }
+  
+
+}
 .boards-container div:hover {
   background-color: #f0f0f0;
 
@@ -51,4 +77,21 @@
   border-color: black;
   border-radius: 10px;
 
+}
+.button{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #4ecf64, #4ecf64, #4ecf64);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: rgb(255, 255, 255);
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
 }
