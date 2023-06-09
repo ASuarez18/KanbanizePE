@@ -45,7 +45,7 @@ export const Tablero = () => {
 
 
     const fetchColumns = async () => {
-      const response = await fetch(`http://localhost:3000/columns`,
+      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/columns`,
         {
           method: 'POST',
           headers: {
@@ -62,7 +62,7 @@ export const Tablero = () => {
     }
 
     const fetchCards = async () => {
-      const response = await fetch(`http://localhost:3000/cards`,
+      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards`,
         {
           method: 'POST',
           headers: {
@@ -78,7 +78,7 @@ export const Tablero = () => {
     }
 
     const fetchWorkflows = async () => {
-      const response = await fetch(`http://localhost:3000/workflows`,
+      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workflows`,
         {
           method: 'POST',
           headers: {
@@ -93,7 +93,7 @@ export const Tablero = () => {
     }
 
     const fetchUsers = async () => {
-      const response = await fetch(`http://localhost:3000/users`,
+      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/users`,
         {
           method: 'POST',
           headers: {

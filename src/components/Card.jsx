@@ -8,7 +8,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
 
-  const url = "http://localhost:3000";
+  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com/";
 
   const {t} = useTranslation();
   const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
