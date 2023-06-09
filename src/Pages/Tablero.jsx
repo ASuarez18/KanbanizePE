@@ -6,7 +6,8 @@ import Filter from '../components/Filter';
 import { useEffect, useState } from 'react';
 import Collapsible from '../components/colision';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+import { useTranslation } from 'react-i18next';
+import i18n from '../components/i18n'
 import '../styles/Tablero.css'
 
 
@@ -16,6 +17,8 @@ export const Tablero = () => {
   let bID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
   let dom =localStorage.getItem('dominioid'); 
   // const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const [columns, setColumns] = useState([]);
   const [cards, setCards] = useState([]);
   const [workflows, setWorkflows] = useState([]);
@@ -42,7 +45,7 @@ export const Tablero = () => {
 
 
     const fetchColumns = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/columns`,
+      const response = await fetch(`http://localhost:3000/columns`,
         {
           method: 'POST',
           headers: {
@@ -59,7 +62,7 @@ export const Tablero = () => {
     }
 
     const fetchCards = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards`,
+      const response = await fetch(`http://localhost:3000/cards`,
         {
           method: 'POST',
           headers: {
@@ -75,7 +78,7 @@ export const Tablero = () => {
     }
 
     const fetchWorkflows = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workflows`,
+      const response = await fetch(`http://localhost:3000/workflows`,
         {
           method: 'POST',
           headers: {
@@ -90,7 +93,7 @@ export const Tablero = () => {
     }
 
     const fetchUsers = async () => {
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/users`,
+      const response = await fetch(`http://localhost:3000/users`,
         {
           method: 'POST',
           headers: {
@@ -181,7 +184,7 @@ export const Tablero = () => {
       <h1>.</h1> {/* Punto para alinear el contenido una linea abajo dado a la navbar */}
       <h1>Workflows</h1>
       <div className="filter-container">
-        <h4>Filtrar</h4>
+        <h4>{t('Filter')}</h4>
         <Filter users={usuarios} />
       </div>
       <div className="workflows-container">

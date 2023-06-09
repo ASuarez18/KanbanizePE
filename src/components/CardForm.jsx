@@ -1,11 +1,12 @@
 import { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 import '../styles/CardForm.css'
 
 const CardForm = ({ workflow, columns, users, backlogs }) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
   let backlog_id = 0;
+  const {t} = useTranslation();
   const [lane_id, setLane_id] = useState(workflow.workflow_id); // Id del workflow
   const [title, setTitle] = useState(""); // Título de la tarjeta
   const [deadline, setDeadline] = useState(null); // Fecha límite de la tarjeta //TODO: Arreglar e implementar datepicke
@@ -50,7 +51,7 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
     })
 
     try {
-      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/create", {
+      const response = await fetch("http://localhost:3000/cards/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,38 +73,38 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
 
   return (
     <form className="card-form" onSubmit={handleSubmit}>
-      <h5>Crear tarjeta</h5>
+      <h5>{t('Create Card')}</h5>
       <h6>Backlog_ID {backlog_id}</h6>
-      <label>Titulo de tarjeta: </label>
+      <label>{t('Card Title: ')}</label>
       <input
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
-      <label>Deadline:</label>
+      <label>{t('Deadline: ')}</label>
       <input
         type="date"
         onChange={(e) => setDeadline(e.target.value)}
         value={deadline}
       />
-      <label>Dueño de tarjeta:</label>
+      <label>{t('Card Owner: ')}</label>
       <select value={owner_user_id} onChange={handleOwnerChange} >
-        <option value="null">Seleccione un owner</option>
+        <option value="null">{t('Select Owner')}</option>
         {users.map((user) => {
           return (
             <option value={user.user_id}>{user.username}</option>
           )
         })}
       </select>
-      <label>Prioridad:</label>
+      <label>{t('Priority: ')}</label>
       <select value={priority} onChange={handlePriorityChange}>
-        <option value="null">Seleccione la prioridad</option>
-        <option value="1">Crítico</option>
-        <option value="2">Alta</option>
-        <option value="3">Promedio</option>
-        <option value="4">Baja</option>
+        <option value="null">{t('Select priority')}</option>
+        <option value="1">{t('Low')}</option>
+        <option value="2">{t('Avarage')}</option>
+        <option value="3">{t('Medium')}</option>
+        <option value="4">{t('Critical')}</option>
       </select>
-      <button>Crear Tarjeta</button>
+      <button>{t('Create Card')}</button>
       {error && <div className="error">{error}</div>}
     </form>
   )

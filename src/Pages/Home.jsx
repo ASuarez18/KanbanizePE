@@ -25,7 +25,7 @@ export const Home = (props) => {
 
 
     const fetchWorkspace = async () => { // * Se obtienen los workspaces
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/workspaces`,
+      const response = await fetch(`http://localhost:3000/workspaces`,
         {
           method: 'POST',
           headers: {
@@ -42,7 +42,7 @@ export const Home = (props) => {
     }
 
     const fetchBoards = async () => { // * Se obtienen los boards
-      const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/boards`,
+      const response = await fetch(`http://localhost:3000/boards`,
         {
           method: 'POST',
           headers: {

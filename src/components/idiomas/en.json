@@ -4,9 +4,30 @@
     "Idioma":"Language",
     "Cerrar Sesión":"Log out",
     "Español":"Spanish",
+    "Dominio":"Domain",
+    "Propietario":"Owner",
     "Ingles":"English",
     "Iniciar Sesión":"Login",
+    "Todos":"All",
     "Correo Electronico":"Email",
     "Contraseña":"Password",
-    "Usuario o contraseña incorrectos, en caso de recuperar contraseña puede consultarlo con Kanbanize":"Incorrect username or password, in case of recovering the password you can consult it with Kanbanize"
+    "Usuario o contraseña incorrectos, en caso de recuperar contraseña puede consultarlo con Kanbanize":"Incorrect username or password, in case of recovering the password you can consult it with Kanbanize",
+    "Bienvenido":"Welcome",
+    "Filtro":"Filter",
+    "Propietario: ":"Owner: ",
+    "Prioridad: ":"Priority: ",
+    "Baja":"Low",
+    "Promedio":"Average",
+    "Alta":"High",
+    "Critica":"Critical",
+    "Fecha limite: ":"Deadline: ",
+    "Sin fecha limite":"No deadline",
+    "Fecha limite":"Deadline",
+    "Comentarios":"Comments",
+    "Mover":"Move",
+    "Ingresa un comentario: ":"Enter a comment: ",
+    "Comentar":"Comment",
+    "Enviar":"Send"
+
+
 }

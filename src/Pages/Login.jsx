@@ -42,7 +42,7 @@ export const Login = () => {
       dom: dom
     };
 
-    const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/login`, {
+    const response = await fetch(`http://localhost:3000/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

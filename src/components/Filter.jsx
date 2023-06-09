@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 import "../styles/Filter.css";
 
 const Filter = (users) => {
+    const {t} = useTranslation();
     const [owner_user_id, setOwner_user_id] = useState(null); // Id del usuario dueño de la tarjeta
 
     const handleOwnerChange = (e) => {
@@ -23,16 +24,16 @@ const Filter = (users) => {
 
     return (
         <form className="filter-form" onSubmit={handleSubmit} >
-            <label>Owner</label>
+            <label>{t('Owner')}</label>
             <select value={owner_user_id} onChange={handleOwnerChange} >
-            <option value="null">Todos</option>
+            <option value="null">{t('All')}</option>
             {users.users.map((user) => {
                     return (
                         <option value={user.user_id}>{user.username}</option>
                     )
             })}
         </select>
-        <button>Filtrar</button>
+        <button>{t('Filter')}</button>
         </form>
         
         
