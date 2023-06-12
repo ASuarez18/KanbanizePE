@@ -74,7 +74,9 @@ const Card = ({ card, users, workflow, backlogs}) => {
         console.log('Submitted comment:', comment);
         setComment('');
         
+        
         setShowCommentModal(false);
+        window.location.reload();
       }
     } catch (error) {
       console.log(error.message);
@@ -137,6 +139,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
         console.log('Submitted attachment:', data);
         setAttachment('');
         setShowCommentModal(false); //! Posible cambio para notificar que se realizó la acción
+        window.location.reload();
       } else {
         console.log('Error submitting attachment', response.status, response.statusText);
       }
@@ -220,7 +223,9 @@ const Card = ({ card, users, workflow, backlogs}) => {
         onRequestClose={() => setShowCommentModal(false)}
         contentLabel="Comment Modal"
       >
-        <form onSubmit={handleCommentSubmit} className='CommentForm'>
+        <div className="CommentForm">
+        
+        <form onSubmit={handleCommentSubmit}>
         {users.map((user) => { // * Mapeo de usuarios
         if (user.user_id ===comentariouser.value) { //* Validar si el usuario es dueño de la tarjeta
           // * Mostrar nombre de usuario
@@ -248,19 +253,16 @@ const Card = ({ card, users, workflow, backlogs}) => {
           <div className = 'CommentBotton' >
           <button className ='buttonCLOSE' onClick={handleCloseCommentModal}>{t('Close ')}<FontAwesomeIcon icon={faTimes} /></button>
            <button className ='buttonEdits' type="submit">{t('Send')} <FontAwesomeIcon icon={faPaperPlane} /></button>
-          
-
-          
-
           </div>
-
         </form>
-        <form onSubmit={handleAttachmentSubmit}>
+        <form onSubmit={handleAttachmentSubmit} >
             <p className='titleComment'>{t('Upload files')}</p>
             <p>{t('Attach file')}</p>
-            <input type="file" onChange={handleAttachmentChange} name="file" />
-            <input type="submit" value={t('Send')}/>
+            <input className ='buttonUpdate' type="file" onChange={handleAttachmentChange} name="file"  />
+            <input className ='buttonEdits' type="submit" value={t('Send')}/>
         </form>
+        </div>
+
 
       </Modal>
     </div>

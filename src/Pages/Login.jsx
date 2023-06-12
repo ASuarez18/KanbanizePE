@@ -66,7 +66,7 @@ export const Login = () => {
 
     const data = await response.json();
 
-    if (data.response === 'Invalid email or password.') {
+    if (data.response === 'Invalid email or password.' || data.response === '400') {
       setModalShow({ show: true, title: 'ERROR', message: t('Incorrect username or password, in case of recovering the password you can consult it with Kanbanize') });
       console.log(values);
     } else {
