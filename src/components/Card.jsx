@@ -49,6 +49,9 @@ const Card = ({ card, users, workflow, backlogs}) => {
   };
 
   const handleCommentSubmit = async (e) => {
+    if (comment === '') {
+      return;
+    }
     e.preventDefault();
     const formData = JSON.stringify({
       text: comment,
@@ -227,13 +230,17 @@ const Card = ({ card, users, workflow, backlogs}) => {
       }
           <p className='titleComment' >{t('Comments')}</p>  
           {comentarios.map((text) => {
-            return <p>- {text.text} </p>
+            if (text.text !== ""){
+              return <p>- {text.text} </p>
+            }else{
+              return <p>{t('*File upload to kanbanize*')}</p>
+            }
           })}
             
           <p>{t('Enter comment: ')}</p>  
 
           <textarea
-            placeholder="Comment"
+            placeholder={t('Comment')}
 
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -243,20 +250,18 @@ const Card = ({ card, users, workflow, backlogs}) => {
            <button className ='buttonEdits' type="submit">{t('Send')} <FontAwesomeIcon icon={faPaperPlane} /></button>
           
 
-           
+          
 
           </div>
 
         </form>
-        {/* <form method='POST' action="${url}/cards/comments/attachments" enctype="multipart/form-data"> */}
         <form onSubmit={handleAttachmentSubmit}>
-          {
-            // TODO: Cambiar textos para localización
-          }
-          <p>Adjuntar archivo</p>
-          <input type="file" onChange={handleAttachmentChange} name="file" />
-          <input type="submit" value="Enviar" />
+            <p className='titleComment'>{t('Upload files')}</p>
+            <p>{t('Attach file')}</p>
+            <input type="file" onChange={handleAttachmentChange} name="file" />
+            <input type="submit" value={t('Send')}/>
         </form>
+
       </Modal>
     </div>
   );

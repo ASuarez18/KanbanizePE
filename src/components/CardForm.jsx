@@ -37,7 +37,15 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title.trim() === "") {
+      setError("Card title cannot be empty");
+      return;
+    }
 
+      if (!deadline) {
+    setError("Deadline must be selected");
+    return;
+  }
 
     let deadlineDate = deadline.toString() + "T12:00:00Z";
 
@@ -51,7 +59,7 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
     })
 
     try {
-      const response = await fetch("http://localhost:3013/cards/create", {
+      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

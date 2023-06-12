@@ -23,7 +23,6 @@
     "Deadline: ":"Fecha Limite: ",
     "No deadline":"Sin Fecha Limite",
     "Deadline":"Fecha Limite",
-    "Comments":"Comentarios",
     "Move":"Mover",
     "Enter a comment":"Ingrese un comentario",
     "Comment":"Comentario",
@@ -34,5 +33,15 @@
     "Select Owner":"Seleccione al Propietario",
     "Select priority":"Seleccione la Prioridad",
     "Comments":"Comentarios",
-    "Close":"Cerrar"
+    "Close":"Cerrar",
+    "Empty fields":"Campos vacios",
+    "Invalid domain":"Dominio invalido",
+    "Deadline must be selected":"Debe seleccionar una fecha limite",
+    "Card title cannot be empty":"El titulo de la tarjeta no puede estar vacio",
+    "Enter comment: ":"Ingrese un comentario: ",
+    "Close ":"Cerrar ",
+    "Attach file":"Adjuntar archivo",
+    "Upload files":"Subir archivos",
+    "Choose file":"Elegir archivo",
+    "File uploaded to Kanbanize":"Archivo subido a Kanbanize"
 }
