@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:3013",
+  "proxy": "http://localhost:3013/",
   "name": "kanbanize-pe",
   "version": "0.1.0",
   "private": true,

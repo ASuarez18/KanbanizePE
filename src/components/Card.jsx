@@ -8,21 +8,21 @@ const Card = ({ card, users, workflow, backlogs}) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
 
-  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com/";
+  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com";
 
   const {t} = useTranslation();
   const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
   const [cardid, setCard_id] = useState(card.card_id); // Id de la tarjeta
-
+  const [selectedFile, setSelectedFile] = useState(null);
   const [comments, setComments] = useState([]);
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [comment, setComment] = useState('');
+  const [attachment, setAttachment] = useState(null);
   const values = {apikey: apikey, dom: dom, cardid: cardid};
 
   const handleCommentClick = async(e) => {
 
     e.preventDefault();
-    setShowCommentModal(true);
     try {
       const response = await fetch(`${url}/cards/comments`, {
         method: "POST",
@@ -106,7 +106,38 @@ const Card = ({ card, users, workflow, backlogs}) => {
   })
   
   
+  const handleAttachmentChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  }
 
+  const handleAttachmentSubmit = async (e) => {
+    e.preventDefault();
+    const attachmentData = new FormData();
+    attachmentData.append('archivo', selectedFile);
+
+    try{
+      const response = await fetch(`${url}/cards/comments/attachments`, {
+        method: "POST",
+        headers: {
+          apikey: apikey,
+          cardid: cardid,
+          dom: dom,
+        },
+        body: attachmentData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Submitted attachment:', data);
+        setAttachment('');
+        setShowCommentModal(false); //! Posible cambio para notificar que se realizó la acción
+      } else {
+        console.log('Error submitting attachment', response.status, response.statusText);
+      }
+    }catch(error){
+      console.log(error.message);
+    }
+  }
 
   const handleCloseCommentModal = () => {
     setShowCommentModal(false);
@@ -205,9 +236,17 @@ const Card = ({ card, users, workflow, backlogs}) => {
             onChange={(e) => setComment(e.target.value)}
           />
           <button type="submit">{t('Send')}</button>
-          
 
           <button onClick={handleCloseCommentModal}>{t('Close')}</button>
+        </form>
+        {/* <form method='POST' action="${url}/cards/comments/attachments" enctype="multipart/form-data"> */}
+        <form onSubmit={handleAttachmentSubmit}>
+          {
+            // TODO: Cambiar textos para localización
+          }
+          <p>Adjuntar archivo</p>
+          <input type="file" onChange={handleAttachmentChange} name="file" />
+          <input type="submit" value="Enviar" />
         </form>
       </Modal>
     </div>
