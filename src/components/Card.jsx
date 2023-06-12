@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import "../styles/Tablero.css";
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const Card = ({ card, users, workflow, backlogs}) => {
   let apikey = localStorage.getItem('apikey');
@@ -214,7 +217,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
         onRequestClose={() => setShowCommentModal(false)}
         contentLabel="Comment Modal"
       >
-        <form onSubmit={handleCommentSubmit}>
+        <form onSubmit={handleCommentSubmit} className='CommentForm'>
         {users.map((user) => { // * Mapeo de usuarios
         if (user.user_id ===comentariouser.value) { //* Validar si el usuario es dueño de la tarjeta
           // * Mostrar nombre de usuario
@@ -222,7 +225,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
         }
       })
       }
-          <p>{t('Comments')}</p>  
+          <p className='titleComment' >{t('Comments')}</p>  
           {comentarios.map((text) => {
             return <p>- {text.text} </p>
           })}
@@ -235,9 +238,15 @@ const Card = ({ card, users, workflow, backlogs}) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-          <button type="submit">{t('Send')}</button>
+          <div className = 'CommentBotton' >
+          <button className ='buttonCLOSE' onClick={handleCloseCommentModal}>{t('Close ')}<FontAwesomeIcon icon={faTimes} /></button>
+           <button className ='buttonEdits' type="submit">{t('Send')} <FontAwesomeIcon icon={faPaperPlane} /></button>
+          
 
-          <button onClick={handleCloseCommentModal}>{t('Close')}</button>
+           
+
+          </div>
+
         </form>
         {/* <form method='POST' action="${url}/cards/comments/attachments" enctype="multipart/form-data"> */}
         <form onSubmit={handleAttachmentSubmit}>

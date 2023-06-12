@@ -21,7 +21,7 @@ const WorkspaceDetails = ({ workspace, boards }) => {
               };
               return (
                 <div key={board.board_id}>
-                  <button type="button" className="custom-link" onClick={handleClick}>
+                  <button type="button" className="button" onClick={handleClick}>
                     {board.name}
                   </button>
                 </div>
