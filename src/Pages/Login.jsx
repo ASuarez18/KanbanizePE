@@ -68,7 +68,6 @@ export const Login = () => {
 
     if (data.response === 'Invalid email or password.' || data.response === '400') {
       setModalShow({ show: true, title: 'ERROR', message: t('Incorrect username or password, in case of recovering the password you can consult it with Kanbanize') });
-      console.log(values);
     } else {
       localStorage.setItem('apikey', data.apikey);
       localStorage.setItem('dominioid', dom);

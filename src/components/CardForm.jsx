@@ -2,16 +2,18 @@ import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import '../styles/CardForm.css'
 
-const CardForm = ({ workflow, columns, users, backlogs }) => {
+const CardForm = ({ workflow, columns, users, backlogs, Boardlane }) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
   let backlog_id = 0;
+  let lane_id = 0;
   const {t} = useTranslation();
-  const [lane_id, setLane_id] = useState(workflow.workflow_id); // Id del workflow
+
   const [title, setTitle] = useState(""); // Título de la tarjeta
   const [deadline, setDeadline] = useState(null); // Fecha límite de la tarjeta //TODO: Arreglar e implementar datepicke
   const [owner_user_id, setOwner_user_id] = useState(null); // Id del usuario dueño de la tarjeta
   const [priority, setPriority] = useState(null); // Prioridad de la tarjeta
+
   // let backlogs = [];
 
   const [error, setError] = useState(null); // Error de validación
@@ -22,6 +24,12 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
       backlog_id = backlog.column_id;
     }
   })
+  Boardlane.map((Boardlane) => {
+    if (Boardlane.workflow_id === workflow.workflow_id) {
+      lane_id = Boardlane.lane_id;
+    }
+  })
+
 
   const handlePriorityChange = (e) => {
     if (priority === "null") {
@@ -83,6 +91,7 @@ const CardForm = ({ workflow, columns, users, backlogs }) => {
     <form className="card-form" onSubmit={handleSubmit}>
       <h5>{t('Create Card')}</h5>
       <h6>Backlog_ID {backlog_id}</h6>
+      <h6>Lane_ID {lane_id}</h6>
       <label>{t('Card Title: ')}</label>
       <input
         type="text"

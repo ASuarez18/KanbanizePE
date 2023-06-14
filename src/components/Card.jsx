@@ -43,7 +43,6 @@ const Card = ({ card, users, workflow, backlogs}) => {
       }
     } catch (error) {
       console.log(error.message);
-      console.log(cardid);
     }
 
   };
@@ -76,7 +75,6 @@ const Card = ({ card, users, workflow, backlogs}) => {
         
         
         setShowCommentModal(false);
-        window.location.reload();
       }
     } catch (error) {
       console.log(error.message);
@@ -179,7 +177,6 @@ const Card = ({ card, users, workflow, backlogs}) => {
       }
     } catch (error) {
       console.log(error.message);
-      console.log(column_id);
     }
   };
 

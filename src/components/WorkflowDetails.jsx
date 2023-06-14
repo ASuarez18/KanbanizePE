@@ -4,12 +4,12 @@ import CardForm from './CardForm';
 import "../styles/Tablero.css";
 
 
-const WorkflowDetails = ({ workflow, columns, cards, users, backlogs }) => {
+const WorkflowDetails = ({ workflow, columns, Boardlane, cards, users, backlogs }) => {
 	return (
 		<div className="workflow-details">
 			{/* Nombre de workflow */}
 			<h2>{workflow.name}</h2>
-			<CardForm workflow={workflow} columns={columns} users={users} backlogs={backlogs} />
+			<CardForm workflow={workflow} columns={columns} users={users} Boardlane={Boardlane} backlogs={backlogs} />
 			<div className="columns-container">
 				{/* Mapeo de columnas */}
 				{columns.map((column) => {

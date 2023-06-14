@@ -12,7 +12,7 @@ import '../styles/Tablero.css'
 
 
 
-export const Tablero = () => {
+export const Tablero = ({workflow}) => {
   let apikey = localStorage.getItem('apikey'); // * Se obtiene el apikey del localstorage
   let bID = localStorage.getItem('boardId'); // * Se obtiene el boardId del localstorage
   let dom =localStorage.getItem('dominioid'); 
@@ -24,6 +24,7 @@ export const Tablero = () => {
   const [workflows, setWorkflows] = useState([]);
   const [users, setUsers] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [Boardlane, setBoardlane] = useState([]);
 
 
 
@@ -57,7 +58,7 @@ export const Tablero = () => {
       const clmns = await response.json();
 
       if (clmns.response !== 'Invalid apikey') {
-        setColumns(clmns.data);
+        return clmns.data;
       }
     }
 
@@ -73,7 +74,7 @@ export const Tablero = () => {
 
       const card = await response.json();
       if (card.response !== 'Invalid apikey') {
-        setCards(card.data.data);
+        return card.data.data;
       }
     }
 
@@ -88,7 +89,7 @@ export const Tablero = () => {
         });
       const wrkflow = await response.json();
       if (wrkflow.response !== 'Invalid apikey') {
-        setWorkflows(wrkflow.data);
+        return wrkflow.data;
       }
     }
 
@@ -103,11 +104,37 @@ export const Tablero = () => {
         });
       const usrs = await response.json();
       if (usrs.response !== 'Invalid apikey') {
-        setUsers(usrs.data);
+        return usrs.data;
       }
     }
 
-    Promise.all([fetchColumns(), fetchCards()], fetchWorkflows(), fetchUsers());
+    const fetchLane = async () => {
+      const response = await fetch(`/lane`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const lanes = await response.json();
+      if (lanes.response !== 'Invalid apikey') {
+        return lanes.data;
+      }
+    };
+
+    Promise.all([fetchColumns(), fetchCards(), fetchWorkflows(), fetchLane(), fetchUsers()]).then((allResponses) => {
+      setColumns(allResponses[0])
+      setCards(allResponses[1])
+      setWorkflows(allResponses[2])
+      setBoardlane(allResponses[3])
+      setUsers(allResponses[4])
+
+      });
+
+    // console.log('lanes\n' + typeof(Boardlane));
+    // if (Boardlane.length == 0) {
+    //   console.log('Empty');
+    // }
 
   }, []);
 
@@ -121,6 +148,15 @@ export const Tablero = () => {
     })
   })
 
+  // console.log('Lanes\n' + Boardlane);
+
+  let lanes = [];
+  Boardlane.map((data) => {
+    if (data.lane_id !== 0) {
+      lanes.push(data);
+    }
+  })
+
   let backlogs = [];
   columns.map((column) => {
     if (column.name === "Backlog") {
@@ -128,6 +164,7 @@ export const Tablero = () => {
       backlogs.push(column);
     }
   })
+
 
   let user_id = localStorage.getItem('userID');
 
@@ -181,44 +218,18 @@ export const Tablero = () => {
   return (
     <div >
       <MyNavbar />
-      <h1>.</h1> {/* Punto para alinear el contenido una linea abajo dado a la navbar */}
       <h1>Workflows</h1>
       <div className="filter-container">
         <h4>{t('Filter')}</h4>
         <Filter users={usuarios} />
       </div>
       <div className="workflows-container">
-        {/* Mapeo de workflows usando un componente */}
+      
         {workflows.map((workflow) => (
-          <WorkflowDetails workflow={workflow} columns={columns} cards={cardsF} users={usuarios} backlogs={backlogs} />
+          <WorkflowDetails workflow={workflow} columns={columns} Boardlane={Boardlane} cards={cardsF} users={usuarios} backlogs={backlogs} />
         ))}
       </div>
-      {/* <div className='bigone'>
-          <Collapsible header="INITIATIVES WORKFLOW">
-        <div>
-          <Collapsible title="Componente 1.1" header="Backlog">
-            <div className='compon'>
-              <Componente11 />
-            </div>
-          </Collapsible>
-          <Collapsible title="Componente 1.1"  header="Request">
-            <div >
-              <Componente11 />
-            </div>
-          </Collapsible>
-          <Collapsible title="Componente 1.1"  header="In progress">
-            <div>
-              <Componente11 />
-            </div>
-          </Collapsible>
-          <Collapsible title="Componente 1.1"  header="Done">
-            <div>
-              <Componente11 />
-          </div>
-        </Collapsible>
-      </div>
-          </Collapsible>
-            </div> */}
+
     </div>
   )
 }
