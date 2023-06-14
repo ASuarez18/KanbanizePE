@@ -1,140 +1,188 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.content {
-  flex-grow: 1;
-}
-
-.bigone {
-  position: relative;
-  width: 95vw;
-  margin-top: 80px;
-}
-
-/*Estilos para el tablero*/
-
-.workflow-details {
-  border: 3px solid #000000;
-  background-color: aliceblue;
-}
-
-.column-details {
-  color: #300dcf;
-  border: 1px solid #605e6a;
-  background-color: aliceblue;
-}
-
-.column-child-details {
-  color: #605e6a;
-  background-color: aliceblue;
-}
-
-.card-details {
-  color: #605e6a;
-  background-color: rgb(111, 157, 198);
-  border: 1px solid #605e6a;
-  padding: 0px;
-
-}
-
-.card-details strong {
-  color: #114956;
-  padding: 0px;
-}
-
-.filter-container {
-  margin-top: 20px;
-}
-
-.filter-container h4 {
-  margin-bottom: 10px;
-}
-
-/* inicia CSS COMENTARIOS */
-.CommentForm{
-	width: 70vw;
-    height: auto;
-    border-radius: 5px;
-    margin: auto;
-    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
-    padding: 2%;
-    background-image: linear-gradient(45deg, #ffffff 50%, #f5f1ec 50%);
-
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-
-}
-
-.titleComment{
-  font-weight: bold;
-  font-size: 20px;
-}
-.CommentBotton{
-  display: flex;
-  justify-content: space-between;
-}
-
-.CommentBotton button {
-
-  margin-right: 10px; 
-}
-
-.buttonEdits{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+  }
+  
+  .content {
+	flex-grow: 1;
+  }
+  
+  .bigone {
+	position: relative;
+	width: 95vw;
+	margin-top: 80px;
+  }
+  
+  /*Estilos para el tablero*/
+  
+  .workflow-details {
+	border: 3px solid #ffffff;
+	background-color: rgb(255, 255, 255);
+  }
+  
+  .column-details {
+	color: #300dcf;
+	border: 1px solid #ffffff;
+	background-color: aliceblue;
+  }
+  
+  .column-child-details {
+	color: #605e6a;
+	background-color: aliceblue;
+  }
+  
+  .card-details {
+	color: #605e6a;
+	background-color: rgb(255, 255, 255);
+	border: 10px solid #e4e2ee;
+	padding: 0px;
+	border-radius: 40px; 
+  
+  
+  }
+  
+  @media screen and (max-width: 425px) {
+	.card-details {
+	  color: #605e6a;
+	  background-color: rgb(255, 255, 255);
+	  border: 10px solid #e4e2ee;
+	  padding: 0px;
+	  border-radius: 10%; 
+	  background-clip: padding-box;
+	
+	}
+	}
+  
+  .card-details strong {
+	color: #114956;
+	padding: 0px;
+  }
+  
+  .filter-container {
+	margin-top: 20px;
+  }
+  
+  .filter-container h4 {
+	margin-bottom: 10px;
+  }
+  
+  /* inicia CSS COMENTARIOS */
+  .CommentForm{
+	  width: 100%;
+	  height: auto;
+	  border-radius: 5px;
+	  margin: auto;
+	  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+	  padding: 2%;
+	  background-image: linear-gradient(45deg, #ffffff 50%, #f5f1ec 50%);
+  
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+  
+  }
+  
+  .titleComment{
+	font-weight: bold;
+	font-size: 20px;
+  }
+  .CommentBotton{
+	display: flex;
+	justify-content: space-between;
+  }
+  
+  .CommentBotton button {
+  
+	margin-right: 10px; 
+  }
+  
+  .buttonEdits{
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  border-radius: 25px;
+	  outline: none;
+	  border: none;
+	  background-image: linear-gradient(to right, #4ecf64, #4ecf64, #4ecf64);
+	  background-size: 200%;
+	  font-size: 1rem;
+	  color: #fff;
+	  font-family: 'Poppins', sans-serif;
+	  text-transform: uppercase;
+	  margin: 1rem 0;
+	  cursor: pointer;
+	  transition: .5s;
+  }
+  .buttonCLOSE{
 	display: block;
-	width: 100%;
-	height: auto;
-	border-radius: 25px;
-	outline: none;
-	border: none;
-	background-image: linear-gradient(to right, #4ecf64, #4ecf64, #4ecf64);
-	background-size: 200%;
-	font-size: 1rem;
-	color: #fff;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin: 1rem 0;
-	cursor: pointer;
-	transition: .5s;
-}
-.buttonCLOSE{
-  display: block;
-	width: 100%;
-	height: auto;
-	border-radius: 25px;
-	outline: none;
-	border: none;
-	background-image: linear-gradient(to right, #ff0000, #ff0000, #ff0000);
-	background-size: 200%;
-	font-size: 1rem;
-	color: #fff;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin: 1rem 0;
-	cursor: pointer;
-	transition: .5s;
-}
-.buttonUpdate{
+	  width: 100%;
+	  height: auto;
+	  border-radius: 25px;
+	  outline: none;
+	  border: none;
+	  background-image: linear-gradient(to right, #ff0000, #ff0000, #ff0000);
+	  background-size: 200%;
+	  font-size: 1rem;
+	  color: #fff;
+	  font-family: 'Poppins', sans-serif;
+	  text-transform: uppercase;
+	  margin: 1rem 0;
+	  cursor: pointer;
+	  transition: .5s;
+  }
+  
+  
+  /*Fin CSS COMENTARIOS */
+  
+  
+  /*botones de opcion a suceder*/
+  /*Botones de mover y comentar*/
+  
+  .OptionBTN{
+	display: flex;
+	
+  }
+  .CMBTN{
+	margin-left: 10px;
 	display: block;
-	width: 100%;
-	height: auto;
-	border-radius: 25px;
-	outline: none;
-	border: none;
-	background-image: linear-gradient(to right, #4e9bcf, #4e9bcf, #4e9bcf);
-	background-size: 200%;
-	font-size: 1rem;
-	color: #fff;
-	font-family: 'Poppins', sans-serif;
-	text-transform: uppercase;
-	margin: 1rem 0;
-	cursor: pointer;
-	transition: .5s;
-  font-size: 65%;
-}
-
-/*Fin CSS COMENTARIOS */
+	  width: 100%;
+	  height: auto;
+	  border-radius: 5px;
+	  outline: none;
+	  border: none;
+	  background-image: linear-gradient(to right, #44ba58, #44ba58, #44ba58);
+	  background-size: 200%;
+	  font-size: 1rem;
+	  color: #fff;
+	  font-family: 'Poppins', sans-serif;
+	  text-transform: uppercase;
+	  margin: 1rem 0;
+	  cursor: pointer;
+	  transition: .5s;
+	margin-right: 10px;
+  }
+  .MobeBTN{
+	margin-left: 10px;
+	display: block;
+	  width: 100%;
+	  height: auto;
+	  border-radius: 5px;
+	  outline: none;
+	  border: none;
+	  background-image: linear-gradient(to right, #44ba58, #44ba58, #44ba58);
+	  background-size: 200%;
+	  font-size: 1rem;
+	  color: #fff;
+	  font-family: 'Poppins', sans-serif;
+	  text-transform: uppercase;
+	  margin: 1rem 0;
+	  cursor: pointer;
+	  transition: .5s;
+  }
+  
+  .spacer {
+	margin: 15px; /* Ajusta el valor del margen según tus necesidades */
+  }
+  

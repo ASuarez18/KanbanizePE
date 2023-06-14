@@ -1,0 +1,1 @@
+export const urlCloud = 'https://8e7469xqji.execute-api.us-east-1.amazonaws.com'

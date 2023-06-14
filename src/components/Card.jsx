@@ -6,12 +6,14 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { urlCloud } from '../const';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+
 
 const Card = ({ card, users, workflow, backlogs}) => {
   let apikey = localStorage.getItem('apikey');
   let dom = localStorage.getItem('dominioid');
-
-  const url = "https://8e7469xqji.execute-api.us-east-1.amazonaws.com";
 
   const {t} = useTranslation();
   const [column_id, setColumn_id] = useState(card.column_id); // Id de la columna
@@ -27,7 +29,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
 
     e.preventDefault();
     try {
-      const response = await fetch(`${url}/cards/comments`, {
+      const response = await fetch(`${urlCloud}/cards/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +59,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
     })
 
     try {
-      const response = await fetch(`${url}/cards/comments/create`, {
+      const response = await fetch(`${urlCloud}/cards/comments/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +124,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
     attachmentData.append('archivo', selectedFile);
 
     try{
-      const response = await fetch(`${url}/cards/comments/attachments`, {
+      const response = await fetch(`${urlCloud}/cards/comments/attachments`, {
         method: "POST",
         headers: {
           apikey: apikey,
@@ -158,7 +160,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
     })
 
     try {
-      const response = await fetch(`${url}/cards/move`, {
+      const response = await fetch(`${urlCloud}/cards/move`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -183,35 +185,48 @@ const Card = ({ card, users, workflow, backlogs}) => {
   return (
     <div className="card-details">
       {/* Nombre de tarjeta */}
-      <strong>{card.title}</strong>
-      {users.map((user) => { // * Mapeo de usuarios
-        if (user.user_id === card.owner_user_id) { //* Validar si el usuario es dueño de la tarjeta
-          // * Mostrar nombre de usuario
-          return <p><strong>{t('Owner: ')}</strong> {user.realname}</p>
+      <div className='OptionBTN'>
+        <div className="spacer"></div> 
+        <strong>{card.title}</strong>
+        </div>
+        <div className='OptionBTN'>
+        <div className="spacer"></div>  
+        {users.map((user) => { // * Mapeo de usuarios
+          if (user.user_id === card.owner_user_id) { //* Validar si el usuario es dueño de la tarjeta
+            // * Mostrar nombre de usuario
+            return <p><strong>{t('Owner: ')}</strong> {user.realname}</p>
+          }
+        })
         }
-      })
-      }
-
-      <p>
-        <strong>{t('Priority: ')}</strong>
-        {
-          card.priority === 1 ? <span className="low-priority"> {t('Low')}</span> :
-            card.priority === 2 ? <span className="medium-priority"> {t('Avarage')}</span> :
-              card.priority === 3 ? <span className="average-priority"> {t('High')}</span> :
-                card.priority === 4 ? <span className="critical-priority"> {t('Critical')}</span> :
-                  card.priority === null ? <span className="low-priority"> {t('Low')}</span> : null //TODO: Revisar
-        }
-      </p>
-      {/* Deadline dependiente de si tiene o no tiene */}
-      {card.deadline === null ? <p><strong>{t('Deadline: ')}</strong> {t('No Deadline')}</p> : <p><strong>{t('Deadline')}</strong> {(card.deadline).substring(0, 10)}</p>}
-      {/*<p>Id tarjeta: {card.card_id}</p>
-      <p>Id columna: {card.column_id}</p>*/}
-       <p>
-        <button onClick={handleCommentClick}>{t('Comments')}</button>
-      </p>
-      <p>
-        <button onClick={handleMoveNext}>{t('Move')}</button>
-      </p>
+      </div>
+      <div className='OptionBTN'>
+        <div className="spacer"></div>
+        <p>
+          <strong>{t('Priority: ')}</strong>
+          {
+            card.priority === 1 ? <span className="low-priority"> {t('Low')}</span> :
+              card.priority === 2 ? <span className="medium-priority"> {t('Avarage')}</span> :
+                card.priority === 3 ? <span className="average-priority"> {t('High')}</span> :
+                  card.priority === 4 ? <span className="critical-priority"> {t('Critical')}</span> :
+                    card.priority === null ? <span className="low-priority"> {t('Low')}</span> : null //TODO: Revisar
+          }
+        </p>
+        <div className="spacer"></div>
+        {/* Deadline dependiente de si tiene o no tiene */}
+        {card.deadline === null ? <p><strong>{t('Deadline: ')}</strong> {t('No Deadline')}</p> : <p><strong>{t('Deadline')}</strong> {(card.deadline).substring(0, 10)}</p>}
+        {/*<p>Id tarjeta: {card.card_id}</p>
+        <p>Id columna: {card.column_id}</p>*/}
+      </div>
+      <div className='OptionBTN'>
+        <div className="spacer"></div>
+        <p>
+          <button className='CMBTN' onClick={handleCommentClick}>{t('Comments')}<FontAwesomeIcon icon={faBook}/></button>
+        </p>
+        <div className="spacer"></div>
+        <p>
+          <button className='MobeBTN' onClick={handleMoveNext}>{t('Move')}<FontAwesomeIcon icon={faArrowRight}/></button>
+        </p>
+      </div>
 
 
 
@@ -222,7 +237,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
       >
         <div className="CommentForm">
         
-        <form onSubmit={handleCommentSubmit}>
+        <form onSubmit={handleCommentSubmit} >
         {users.map((user) => { // * Mapeo de usuarios
         if (user.user_id ===comentariouser.value) { //* Validar si el usuario es dueño de la tarjeta
           // * Mostrar nombre de usuario
@@ -259,6 +274,7 @@ const Card = ({ card, users, workflow, backlogs}) => {
             <input className ='buttonEdits' type="submit" value={t('Send')}/>
         </form>
         </div>
+
 
 
       </Modal>

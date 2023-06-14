@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet';
 import { dom } from "aria-query";
+import { urlCloud } from "../const";
 
 export const Login = () => {
   //* Const y funcion para que sirva el cambio de idioma 
@@ -56,7 +57,7 @@ export const Login = () => {
       dom: dom
     };
 
-    const response = await fetch(`https://8e7469xqji.execute-api.us-east-1.amazonaws.com/login`, {
+    const response = await fetch(`${urlCloud}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

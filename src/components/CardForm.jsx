@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import '../styles/CardForm.css'
+import { urlCloud } from '../const';
 
 const CardForm = ({ workflow, columns, users, backlogs, Boardlane }) => {
   let apikey = localStorage.getItem('apikey');
@@ -67,7 +68,7 @@ const CardForm = ({ workflow, columns, users, backlogs, Boardlane }) => {
     })
 
     try {
-      const response = await fetch("https://8e7469xqji.execute-api.us-east-1.amazonaws.com/cards/create", {
+      const response = await fetch(`${urlCloud}/cards/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
