@@ -71,6 +71,7 @@ export const Home = (props) => {
       </div>
       <div className="home">
         <div className="workspaces-container">
+          <h1>Prueba</h1>
           {workspace && workspace.map((workspace) => (
             <WorkspaceDetails key={workspace.workspace_id} workspace={workspace} boards={boards} />
           ))}
